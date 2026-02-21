@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krishna Store — Mobile Destination · Jharkhand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2f4f9;--bg2:#fff;--bg3:#eaecf5;--card:#fff;
+  --border:#dde3f0;--text:#08101e;--text2:#4a5472;--text3:#8896b8;
+  --accent:#0047e1;--accent2:#00b4d8;--accent-bg:rgba(0,71,225,0.08);
+  --green:#00b894;--red:#e84152;--orange:#f59e0b;--purple:#7c3aed;
+  --shadow:0 2px 16px rgba(0,71,225,0.07);--shadow2:0 12px 40px rgba(0,0,0,0.14);
+  --radius:16px;--nav:68px;
+  --font-head:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
+}
+[data-theme=dark]{
+  --bg:#070b14;--bg2:#0d1120;--bg3:#111626;--card:#111626;
+  --border:#181f35;--text:#e4eaff;--text2:#7a8ab0;--text3:#3d4d70;
+  --accent-bg:rgba(0,71,225,0.14);
+  --shadow:0 2px 20px rgba(0,71,225,0.18);--shadow2:0 12px 40px rgba(0,0,0,0.55);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;line-height:1.6}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-head);line-height:1.1}
+input,select,textarea{font-family:var(--font-body);background:var(--bg3);border:1.5px solid var(--border);color:var(--text);border-radius:10px;padding:10px 14px;width:100%;font-size:14px;transition:border .2s;outline:none;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+button{cursor:pointer;font-family:var(--font-body)}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes shimmer{from{background-position:-200% 0}to{background-position:200% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ticker{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+@keyframes countUp{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes timerPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,65,82,0.4)}50%{box-shadow:0 0 0 8px rgba(232,65,82,0)}}
+
+.fu{animation:fadeUp .45s ease forwards}
+.si{animation:slideIn .35s ease forwards}
+
+/* PAGE SYSTEM */
+.page{display:none}
+.page.active{display:block}
+.dash-page{display:none}
+.dash-page.active{display:block}
+
+/* CARD */
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+
+/* BADGE */
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.badge-blue{background:var(--accent-bg);color:var(--accent)}
+.badge-green{background:rgba(0,184,148,.12);color:#00966e}
+.badge-red{background:rgba(232,65,82,.12);color:#c0392b}
+.badge-orange{background:rgba(245,158,11,.12);color:#b45309}
+.badge-gray{background:var(--bg3);color:var(--text3)}
+.badge-purple{background:rgba(124,58,237,.12);color:#7c3aed}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:10px;font-weight:700;cursor:pointer;transition:all .2s;font-size:14px;padding:11px 22px;white-space:nowrap}
+.btn-sm{font-size:12px;padding:7px 14px}
+.btn-lg{font-size:16px;padding:14px 30px}
+.btn-full{width:100%;justify-content:center}
+.btn-primary{background:linear-gradient(135deg,#0047e1,#00b4d8);color:#fff;box-shadow:0 4px 18px rgba(0,71,225,0.32)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,71,225,0.4)}
+.btn-secondary{background:var(--bg3);color:var(--text);border:1.5px solid var(--border)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn-ghost:hover{background:var(--accent-bg)}
+.btn-danger{background:#e84152;color:#fff}
+.btn-danger:hover{background:#c0392b}
+.btn-green{background:#00b894;color:#fff}
+.btn-green:hover{background:#00a381}
+.btn-dark{background:#08101e;color:#fff}
+.btn-dark:hover{background:#1a2540}
+.btn-wa{background:#25D366;color:#fff;border:none}
+.btn-wa:hover{background:#128C7E}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav);background:rgba(242,244,249,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;justify-content:space-between;transition:background .3s}
+[data-theme=dark] .navbar{background:rgba(7,11,20,0.92)}
+.navbar-brand{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0}
+.brand-icon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#0047e1,#00b4d8);display:flex;align-items:center;justify-content:center;font-size:20px}
+.brand-name{font-family:var(--font-head);font-weight:700;font-size:17px;line-height:1}
+.brand-sub{font-size:10px;color:var(--text3);font-weight:500}
+.nav-links{display:flex;gap:2px}
+.nav-link{background:transparent;border:none;color:var(--text2);border-radius:8px;padding:7px 13px;font-weight:600;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nav-link:hover{background:var(--bg3);color:var(--text)}
+.nav-link.active{background:var(--accent-bg);color:var(--accent)}
+.nav-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.hamburger{display:none;background:var(--bg3);border:1.5px solid var(--border);border-radius:8px;padding:7px;cursor:pointer;flex-direction:column;gap:4px;transition:background .2s}
+.hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.open{background:var(--accent-bg);border-color:var(--accent)}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);background:var(--accent)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--accent)}
+.mobile-menu{display:none;position:fixed;top:var(--nav);left:0;right:0;background:var(--card);border-bottom:1.5px solid var(--border);padding:12px 16px;z-index:999;flex-direction:column;gap:4px;box-shadow:var(--shadow2);animation:fadeUp .2s ease}
+.mobile-menu.open{display:flex}
+.mobile-nav-link{padding:12px 16px;border-radius:10px;font-weight:600;font-size:14px;border:none;background:transparent;color:var(--text2);text-align:left;width:100%;cursor:pointer;transition:all .2s}
+.mobile-nav-link:hover,.mobile-nav-link.active{background:var(--accent-bg);color:var(--accent)}
+
+/* DASHBOARD LAYOUT */
+.dash-layout{display:flex;min-height:100vh;background:var(--bg)}
+.sidebar{width:230px;background:var(--card);border-right:1.5px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;z-index:100;overflow-y:auto;transition:transform .3s}
+.sidebar-brand{padding:18px 16px 0}
+.sidebar-nav{padding:0 12px;flex:1}
+.sidebar-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:none;border-radius:10px;background:transparent;color:var(--text2);font-weight:700;font-size:13px;cursor:pointer;margin-bottom:2px;text-align:left;transition:all .2s}
+.sidebar-btn:hover{background:var(--bg3);color:var(--text)}
+.sidebar-btn.active{background:var(--accent-bg);color:var(--accent)}
+.sidebar-footer{padding:14px}
+.dash-main{margin-left:230px;flex:1;padding:28px;min-height:100vh}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.grid-kpi{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+
+/* PRODUCT CARD */
+.prod-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .25s}
+.prod-card:hover{transform:translateY(-5px);box-shadow:var(--shadow2)}
+.prod-img{background:var(--bg3);height:180px;display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
+.prod-discount{position:absolute;top:10px;right:10px;background:#e84152;color:#fff;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:800}
+.prod-stock{position:absolute;top:10px;left:10px}
+.prod-body{padding:14px}
+.prod-brand{font-size:10px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.prod-name{font-family:var(--font-head);font-weight:600;font-size:14px;margin-bottom:5px;line-height:1.3}
+.prod-specs{font-size:11px;color:var(--text3);margin-bottom:10px;line-height:1.5}
+.prod-price{display:flex;align-items:baseline;gap:8px}
+.price-main{font-family:var(--font-head);font-weight:700;font-size:17px}
+.price-mrp{font-size:12px;color:var(--text3);text-decoration:line-through}
+
+/* KPI CARD */
+.kpi-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.kpi-stripe{position:absolute;top:0;left:0;bottom:0;width:3px}
+.kpi-icon{font-size:26px;margin-bottom:8px}
+.kpi-val{font-family:var(--font-head);font-weight:700;font-size:22px;margin-bottom:2px}
+.kpi-label{font-size:11px;color:var(--text3);font-weight:600}
+
+/* OFFER TIMER */
+.offer-timer{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.timer-block{background:rgba(232,65,82,0.12);border:1.5px solid rgba(232,65,82,0.3);border-radius:8px;padding:6px 10px;text-align:center;min-width:52px}
+.timer-num{font-family:var(--font-head);font-weight:800;font-size:20px;color:#e84152;line-height:1;display:block}
+.timer-label{font-size:9px;font-weight:700;color:#e84152;text-transform:uppercase;letter-spacing:.5px;opacity:.8}
+.timer-sep{font-family:var(--font-head);font-weight:800;font-size:20px;color:#e84152;opacity:.6}
+
+/* OFFER CARD */
+.offer-card{border-radius:var(--radius);padding:20px;position:relative;overflow:hidden;animation:timerPulse 2s infinite}
+
+/* HERO */
+.hero{background:linear-gradient(145deg,#040710 0%,#091230 50%,#040d1e 100%);padding:88px 24px 100px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;background-image:radial-gradient(circle at 15% 60%, rgba(0,71,225,.2) 0%, transparent 45%), radial-gradient(circle at 85% 25%, rgba(0,180,216,.14) 0%, transparent 40%), radial-gradient(circle at 50% 100%, rgba(124,58,237,.12) 0%, transparent 50%)}
+.hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,71,225,.18);border:1px solid rgba(0,71,225,.35);border-radius:20px;padding:5px 16px;margin-bottom:28px}
+.hero-dot{width:7px;height:7px;border-radius:50%;background:#00b894;animation:pulse 2s infinite}
+.hero-badge-text{color:#8ab4ff;font-size:11px;font-weight:700;letter-spacing:.5px}
+.hero-title{font-family:var(--font-head);font-size:clamp(36px,5.5vw,72px);font-weight:800;color:#fff;line-height:1.06;margin-bottom:22px}
+.hero-accent{background:linear-gradient(135deg,#0047e1,#00b4d8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:rgba(255,255,255,.45);font-size:clamp(20px,2.5vw,36px)}
+.hero-desc{color:#617a9e;font-size:16px;max-width:540px;line-height:1.7;margin-bottom:40px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{display:grid;grid-template-columns:repeat(3,auto);gap:0 36px;margin-top:60px;max-width:360px}
+.hero-stat-num{font-family:var(--font-head);font-size:28px;font-weight:800;color:#fff}
+.hero-stat-label{color:#617a9e;font-size:12px;font-weight:600}
+
+/* TICKER */
+.ticker-wrap{background:linear-gradient(135deg,#0047e1,#00b4d8);padding:11px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;gap:60px;animation:ticker 30s linear infinite}
+.ticker-item{color:#fff;font-weight:700;font-size:12px;flex-shrink:0}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;padding:13px 22px;border-radius:12px;font-weight:700;box-shadow:0 8px 30px rgba(0,0,0,.25);animation:fadeUp .3s ease;max-width:320px;font-size:14px;color:#fff}
+.toast-success{background:#00b894}
+.toast-error{background:#e84152}
+.toast-info{background:#0047e1}
+
+/* FEATURE CARDS */
+.feature-card{text-align:center;padding:24px 16px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);transition:all .2s}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}
+.feature-icon{font-size:36px;margin-bottom:12px}
+.feature-title{font-family:var(--font-head);font-weight:700;font-size:14px;margin-bottom:6px}
+.feature-desc{font-size:12px;color:var(--text3);line-height:1.7}
+
+/* OFFER SECTION */
+.offer-section{background:linear-gradient(145deg,#0047e1 0%,#7c3aed 100%);padding:60px 24px;margin:0;position:relative;overflow:hidden}
+.offer-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+
+/* EMI CARDS */
+.emi-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:18px;backdrop-filter:blur(10px)}
+.emi-bank{font-family:var(--font-head);font-weight:700;font-size:16px;color:#fff;margin-bottom:4px}
+.emi-detail{font-size:12px;color:rgba(255,255,255,0.75);margin-bottom:2px}
+.emi-highlight{font-size:11px;font-weight:700;color:#00ffc8;margin-top:6px}
+
+/* SECTION */
+.section{max-width:1200px;margin:0 auto;padding:56px 24px}
+.section-title{font-family:var(--font-head);font-weight:700;font-size:28px;margin-bottom:6px}
+.section-sub{color:var(--text3);font-size:13px;margin-bottom:24px}
+
+/* CATEGORY PILLS */
+.cat-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.cat-pill{background:var(--bg3);color:var(--text2);border:1.5px solid var(--border);border-radius:20px;padding:7px 18px;font-weight:700;font-size:12px;cursor:pointer;transition:all .2s}
+.cat-pill:hover{border-color:var(--accent);color:var(--accent)}
+.cat-pill.active{background:linear-gradient(135deg,#0047e1,#00b4d8);color:#fff;border-color:transparent}
+
+/* CHART */
+.chart-wrap{width:100%;overflow:hidden}
+svg.line-chart{width:100%;display:block}
+
+/* BAR CHART */
+.bar-chart{display:flex;align-items:flex-end;gap:10px}
+.bar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.bar-label-top{font-size:11px;font-weight:700;color:var(--text2)}
+.bar-body{width:100%;border-radius:6px;overflow:hidden}
+.bar-fill{width:100%;border-radius:6px;transition:height .8s ease}
+.bar-label-bot{font-size:10px;color:var(--text3);text-align:center;font-weight:600;line-height:1.3}
+
+/* PIE LEGEND */
+.pie-wrap{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.pie-legend{display:flex;flex-direction:column;gap:8px}
+.pie-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);font-weight:600}
+.pie-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+/* SEPARATOR */
+.divider{height:1px;background:var(--border);margin:10px 0}
+
+/* TABLE ROW */
+.list-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.list-row:last-child{border-bottom:none}
+
+/* STORE CARD */
+.store-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all .2s}
+.store-card:hover{box-shadow:var(--shadow2);transform:translateY(-3px)}
+.store-top{height:4px}
+
+/* FORM GROUP */
+.form-group{display:flex;flex-direction:column;gap:10px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-label{font-size:12px;font-weight:700;color:var(--text2);display:block;margin-bottom:4px}
+
+/* PROGRESS BAR */
+.progress-bar-wrap{background:var(--bg3);border-radius:4px;height:7px;overflow:hidden;margin-top:5px}
+.progress-bar-fill{height:100%;border-radius:4px;transition:width .8s ease}
+
+/* INQUIRY + COMPLAINT ITEMS */
+.inq-item{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:14px 18px}
+.inq-avatar{width:44px;height:44px;border-radius:12px;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+
+/* SECTION HEADER */
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+
+/* OWNER TIMER CONTROL */
+.timer-ctrl{background:rgba(232,65,82,.1);border:1.5px solid rgba(232,65,82,.25);border-radius:12px;padding:14px 18px;margin-top:12px}
+.timer-ctrl-title{font-size:12px;font-weight:700;color:#e84152;margin-bottom:10px}
+
+/* MODAL OVERLAY */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:2000;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:28px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;animation:fadeUp .3s ease}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1.5px solid var(--border);padding:52px 24px 28px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:32px;margin-bottom:36px}
+.footer-title{font-family:var(--font-head);font-weight:700;font-size:14px;margin-bottom:14px}
+.footer-link{display:block;background:none;border:none;font-size:13px;color:var(--text3);cursor:pointer;margin-bottom:8px;padding:0;text-align:left;transition:color .2s;font-family:var(--font-body)}
+.footer-link:hover{color:var(--accent)}
+.footer-text{font-size:13px;color:var(--text3);margin-bottom:8px;line-height:1.7}
+.footer-bottom{border-top:1.5px solid var(--border);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+/* DRAG DROP */
+.drop-zone{background:var(--bg3);border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;margin-bottom:12px;cursor:pointer;transition:all .2s}
+.drop-zone:hover{border-color:var(--accent);background:var(--accent-bg)}
+
+/* PRODUCT LIST ITEM */
+.prod-list-item{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;transition:all .2s}
+.prod-list-item:hover{border-color:var(--accent)}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);padding:24px}
+.cred-box{background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:18px;margin-top:16px}
+
+/* PRODUCT DETAIL */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.detail-main-img{background:var(--bg3);border-radius:20px;height:400px;display:flex;align-items:center;justify-content:center;font-size:130px;border:1.5px solid var(--border);margin-bottom:14px}
+.detail-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.detail-thumb{background:var(--bg3);border-radius:10px;height:70px;display:flex;align-items:center;justify-content:center;font-size:32px;border:1.5px solid var(--border);cursor:pointer;transition:border-color .2s}
+.detail-thumb:hover{border-color:var(--accent)}
+
+/* SUGGESTIONS */
+.suggestion-chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg3);border:1.5px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.suggestion-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
+
+/* SCROLLABLE ROW */
+.scroll-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.scroll-row::-webkit-scrollbar{height:3px}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .grid-2{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .detail-grid{grid-template-columns:1fr}
+  .detail-main-img{height:280px;font-size:100px}
+  .nav-links{display:none}
+  .nav-actions .btn-dark{display:none}
+  .hamburger{display:flex}
+  .dash-main{margin-left:0;padding:16px}
+  .sidebar{transform:translateX(-100%);z-index:200;top:0}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:199}
+  .sidebar-overlay.open{display:block}
+  .hero{padding:80px 16px 70px}
+  .hero-title{font-size:clamp(30px,7vw,52px)}
+  .hero-stats{gap:0 20px}
+  .offer-section{padding:40px 16px}
+  .section{padding:40px 16px}
+  .grid-kpi{grid-template-columns:repeat(2,1fr)}
+  .form-row{grid-template-columns:1fr}
+  .toast{bottom:16px;right:16px;left:16px;max-width:none}
+}
+@media(max-width:600px){
+  .grid-3{grid-template-columns:1fr}
+  .grid-auto{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+  .hero-title{font-size:30px}
+  .hero-btns{gap:8px}
+  .hero-btns .btn-lg{font-size:14px;padding:12px 20px}
+  .hero-stats{max-width:100%;gap:0 16px}
+  .navbar{padding:0 12px;gap:8px}
+  .brand-sub{display:none}
+  .bar-chart{gap:6px}
+  .pie-wrap{flex-direction:column;align-items:flex-start}
+  .grid-kpi{grid-template-columns:1fr 1fr}
+}
+@media(min-width:901px){
+  .hamburger{display:none!important}
+  .mobile-menu{display:none!important}
+  .sidebar-toggle{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-brand" onclick="showPage('home')">
+    <div class="brand-icon">📱</div>
+    <div>
+      <div class="brand-name">Krishna Store</div>
+      <div class="brand-sub">Mobile Destination · Jharkhand</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showPage('home');setActive(this)">Home</button>
+    <button class="nav-link" onclick="showPage('phones');setActive(this)">Phones</button>
+    <button class="nav-link" onclick="showPage('accessories');setActive(this)">Accessories</button>
+    <button class="nav-link" onclick="showPage('stores');setActive(this)">Stores</button>
+    <button class="nav-link" onclick="showPage('support');setActive(this)">Support</button>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-sm btn-secondary" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
+    <button class="btn btn-sm btn-dark" onclick="showPage('login')">Staff Login</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-nav-link active" onclick="showPage('home');closeMobileMenu()">🏠 Home</button>
+  <button class="mobile-nav-link" onclick="showPage('phones');closeMobileMenu()">📱 Phones</button>
+  <button class="mobile-nav-link" onclick="showPage('accessories');closeMobileMenu()">🎧 Accessories</button>
+  <button class="mobile-nav-link" onclick="showPage('stores');closeMobileMenu()">📍 Stores</button>
+  <button class="mobile-nav-link" onclick="showPage('support');closeMobileMenu()">🆘 Support</button>
+  <button class="mobile-nav-link" onclick="showPage('login');closeMobileMenu()">🔐 Staff Login</button>
+  <button class="btn btn-secondary btn-full" style="margin-top:8px" onclick="toggleTheme()">🌙 Toggle Theme</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- HOME PAGE -->
+<!-- ============================================================ -->
+<div class="page active" id="page-home" style="padding-top:var(--nav)">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-dot"></span>
+        <span class="hero-badge-text">3 LOCATIONS ACROSS JHARKHAND — DEOGHAR &amp; MADHUPUR</span>
+      </div>
+      <h1 class="hero-title">
+        Your Trusted<br>
+        <span class="hero-accent">Mobile Destination</span><br>
+        <span class="hero-sub">in Deoghar Region</span>
+      </h1>
+      <p class="hero-desc">Premium smartphones, accessories &amp; expert service. Shop in-store at any of our 3 branches or get doorstep delivery across Jharkhand.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary btn-lg" onclick="document.getElementById('home-prods').scrollIntoView({behavior:'smooth'})">🛍 Explore Phones</button>
+        <button class="btn btn-lg" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25)" onclick="showPage('stores')">📍 Visit a Store</button>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-wa btn-lg">💬 WhatsApp Us</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Locations</div></div>
+        <div><div class="hero-stat-num">500+</div><div class="hero-stat-label">Products</div></div>
+        <div><div class="hero-stat-num">10K+</div><div class="hero-stat-label">Customers</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner" id="tickerInner">
+      <span class="ticker-item">🎉 Holi Sale — Extra ₹2000 off on iPhones</span>
+      <span class="ticker-item">🚚 Free Home Delivery in Deoghar</span>
+      <span class="ticker-item">💳 0% EMI on Orders above ₹10,000</span>
+      <span class="ticker-item">🛡 Warranty Support at All 3 Branches</span>
+      <span class="ticker-item">🔥 Samsung Galaxy S24 Ultra — In Stock Now</span>
+      <span class="ticker-item">🎉 Holi Sale — Extra ₹2000 off on iPhones</span>
+      <span class="ticker-item">🚚 Free Home Delivery in Deoghar</span>
+      <span class="ticker-item">💳 0% EMI on Orders above ₹10,000</span>
+    </div>
+  </div>
+
+  <!-- ACTIVE OFFERS SECTION -->
+  <div style="background:linear-gradient(145deg,#0047e1,#7c3aed);padding:56px 24px;position:relative;overflow:hidden" id="home-offers">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 80% 20%, rgba(255,255,255,.06) 0%, transparent 50%)"></div>
+    <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1">
+      <div style="text-align:center;margin-bottom:36px">
+        <h2 style="font-family:var(--font-head);font-weight:800;font-size:clamp(24px,4vw,36px);color:#fff;margin-bottom:8px">🔥 Live Offers — Ending Soon!</h2>
+        <p style="color:rgba(255,255,255,.7);font-size:14px">Grab these deals before they expire</p>
+      </div>
+      <div class="grid-3" id="homeOffersGrid"></div>
+    </div>
+  </div>
+
+  <!-- EMI SECTION -->
+  <div style="background:linear-gradient(145deg,#040710,#091230);padding:56px 24px">
+    <div style="max-width:1200px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:36px">
+        <h2 style="font-family:var(--font-head);font-weight:800;font-size:clamp(22px,3.5vw,32px);color:#fff;margin-bottom:8px">💳 Best EMI Options</h2>
+        <p style="color:rgba(255,255,255,.6);font-size:14px">No cost &amp; low cost EMI on top banks — buy your dream phone today</p>
+      </div>
+      <div class="grid-auto" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">
+        <div class="emi-card"><div class="emi-bank">🏦 HDFC Bank</div><div class="emi-detail">0% EMI on 3, 6, 9 months</div><div class="emi-detail">Min. purchase: ₹10,000</div><div class="emi-highlight">✅ No processing fee on iPhones</div></div>
+        <div class="emi-card"><div class="emi-bank">🏦 SBI Card</div><div class="emi-detail">0% EMI on 3 &amp; 6 months</div><div class="emi-detail">Min. purchase: ₹5,000</div><div class="emi-highlight">✅ Extra ₹1000 cashback</div></div>
+        <div class="emi-card"><div class="emi-bank">🏦 Axis Bank</div><div class="emi-detail">Low cost EMI — 9 &amp; 12 months</div><div class="emi-detail">Only 1% processing fee</div><div class="emi-highlight">✅ Best for Samsung &amp; OnePlus</div></div>
+        <div class="emi-card"><div class="emi-bank">🏦 ICICI Bank</div><div class="emi-detail">0% EMI on 6 months</div><div class="emi-detail">Min. purchase: ₹8,000</div><div class="emi-highlight">✅ Instant approval available</div></div>
+        <div class="emi-card"><div class="emi-bank">📲 Bajaj Finserv</div><div class="emi-detail">Easy EMI — 3 to 24 months</div><div class="emi-detail">Min. purchase: ₹2,999</div><div class="emi-highlight">✅ No credit card needed</div></div>
+        <div class="emi-card"><div class="emi-bank">📲 ZestMoney / Pay Later</div><div class="emi-detail">Buy now, pay in 30 days</div><div class="emi-detail">Zero paperwork</div><div class="emi-highlight">✅ Instant approval, all banks</div></div>
+      </div>
+      <div style="text-align:center;margin-top:28px">
+        <a href="https://wa.me/91XXXXXXXXXX?text=Hi, I want to know about EMI options" target="_blank" class="btn btn-wa btn-lg">💬 Ask About EMI on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS SECTION -->
+  <div class="section" id="home-prods">
+    <div class="sec-head">
+      <div>
+        <h2 class="section-title">Browse Products</h2>
+        <p class="section-sub">Fresh stock, genuine products, best prices</p>
+      </div>
+    </div>
+    <div class="cat-pills" id="homeCatPills"></div>
+    <div class="grid-auto" id="homeProdsGrid"></div>
+  </div>
+
+  <!-- WHY US -->
+  <div style="background:var(--bg2);padding:56px 24px 80px">
+    <div style="max-width:1200px;margin:0 auto">
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:clamp(22px,3.5vw,32px);text-align:center;margin-bottom:10px">Why Choose Krishna Store?</h2>
+      <p style="color:var(--text3);font-size:13px;text-align:center;margin-bottom:36px">Your one-stop mobile experience across Jharkhand</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px" id="whyGrid"></div>
+    </div>
+  </div>
+
+  <!-- SUGGESTION CHIPS -->
+  <div style="background:var(--bg3);padding:36px 24px">
+    <div style="max-width:1200px;margin:0 auto;text-align:center">
+      <p style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🔍 Popular Searches</p>
+      <div class="scroll-row" style="justify-content:center;flex-wrap:wrap">
+        <span class="suggestion-chip" onclick="filterByBrand('Apple')">🍎 iPhone Under ₹80k</span>
+        <span class="suggestion-chip" onclick="filterByBrand('Samsung')">📱 Best Samsung Phones</span>
+        <span class="suggestion-chip" onclick="filterCat('Earbuds & Audio')">🎧 Wireless Earbuds</span>
+        <span class="suggestion-chip" onclick="filterCat('Smartwatches')">⌚ Smartwatches</span>
+        <span class="suggestion-chip" onclick="showPage('phones')">🔥 Phones Under ₹30k</span>
+        <span class="suggestion-chip" onclick="filterByBrand('Redmi')">⚡ Best Redmi 5G</span>
+        <span class="suggestion-chip" onclick="filterCat('Power Banks')">🔋 Power Banks</span>
+        <span class="suggestion-chip" onclick="filterCat('Chargers & Cables')">🔌 Fast Chargers</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="homeFooter"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHONES PAGE -->
+<!-- ============================================================ -->
+<div class="page" id="page-phones" style="padding-top:var(--nav)">
+  <div style="background:linear-gradient(145deg,#040710,#091230);padding:70px 24px;text-align:center">
+    <h1 style="font-family:var(--font-head);font-weight:800;font-size:clamp(28px,5vw,48px);color:#fff;margin-bottom:10px">📱 Smartphones</h1>
+    <p style="color:#617a9e;font-size:15px">Latest phones at best prices — all brands, all budgets</p>
+  </div>
+  <div class="section">
+    <div class="grid-auto" id="phonesGrid"></div>
+  </div>
+  <div id="phonesFooter"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ACCESSORIES PAGE -->
+<!-- ============================================================ -->
+<div class="page" id="page-accessories" style="padding-top:var(--nav)">
+  <div style="background:linear-gradient(145deg,#040710,#091230);padding:70px 24px;text-align:center">
+    <h1 style="font-family:var(--font-head);font-weight:800;font-size:clamp(28px,5vw,48px);color:#fff;margin-bottom:10px">🎧 Accessories</h1>
+    <p style="color:#617a9e;font-size:15px">Earbuds, chargers, cases, watches &amp; more</p>
+  </div>
+  <div class="section">
+    <div class="grid-auto" id="accsGrid"></div>
+  </div>
+  <div id="accsFooter"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STORES PAGE -->
+<!-- ============================================================ -->
+<div class="page" id="page-stores" style="padding-top:var(--nav)">
+  <div style="background:linear-gradient(145deg,#040710,#091230);padding:70px 24px;text-align:center">
+    <h1 style="font-family:var(--font-head);font-weight:800;font-size:clamp(28px,5vw,48px);color:#fff;margin-bottom:10px">Our Stores</h1>
+    <p style="color:#617a9e;font-size:15px">3 premium locations across Deoghar Region, Jharkhand</p>
+  </div>
+  <div class="section">
+    <div class="grid-3" style="margin-bottom:32px" id="storesGrid"></div>
+    <div class="card" style="height:280px;display:flex;align-items:center;justify-content:center;background:var(--bg3);flex-direction:column;gap:12px;text-align:center">
+      <div style="font-size:48px">🗺</div>
+      <div style="font-family:var(--font-head);font-weight:700;font-size:18px">Interactive Map</div>
+      <div style="color:var(--text3);font-size:13px">Live map integration available in production</div>
+      <button class="btn btn-primary" onclick="window.open('https://maps.google.com/?q=Deoghar+Jharkhand')">Open in Google Maps</button>
+    </div>
+  </div>
+  <div id="storesFooter"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SUPPORT PAGE -->
+<!-- ============================================================ -->
+<div class="page" id="page-support" style="padding-top:var(--nav)">
+  <div style="background:linear-gradient(145deg,#040710,#091230);padding:70px 24px;text-align:center">
+    <h1 style="font-family:var(--font-head);font-weight:800;font-size:clamp(28px,5vw,48px);color:#fff;margin-bottom:10px">Support Center</h1>
+    <p style="color:#617a9e;font-size:15px">Inquiry, complaint, warranty — we're here to help</p>
+  </div>
+  <div style="max-width:640px;margin:0 auto;padding:52px 24px 80px">
+    <div class="card" id="supportFormCard">
+      <h3 style="font-family:var(--font-head);font-weight:700;font-size:20px;margin-bottom:6px">Submit a Request</h3>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:22px">Fill the form and our team will respond within 24 hours.</p>
+      <div class="form-group">
+        <div class="form-row">
+          <input placeholder="Your Name" id="suppName">
+          <input placeholder="Phone Number" id="suppPhone">
+        </div>
+        <select id="suppType">
+          <option>Product Inquiry</option>
+          <option>Complaint</option>
+          <option>Warranty Query</option>
+          <option>Feedback</option>
+        </select>
+        <input placeholder="Product Name (optional)" id="suppProduct">
+        <textarea rows="4" placeholder="Describe your issue or inquiry..." id="suppMessage"></textarea>
+        <button class="btn btn-primary btn-full" onclick="submitSupport()">Submit →</button>
+      </div>
+    </div>
+    <div class="card" id="supportSuccessCard" style="display:none;text-align:center;padding:48px">
+      <div style="font-size:60px;margin-bottom:16px">✅</div>
+      <h3 style="font-family:var(--font-head);font-weight:700;font-size:22px;margin-bottom:8px">Request Submitted!</h3>
+      <p style="color:var(--text3);font-size:14px;line-height:1.7">Our team will review your request and get back to you within 24 hours.</p>
+      <button class="btn btn-primary" style="margin-top:24px" onclick="resetSupport()">Submit Another</button>
+    </div>
+  </div>
+  <div id="supportFooter"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PRODUCT DETAIL PAGE -->
+<!-- ============================================================ -->
+<div class="page" id="page-product" style="padding-top:var(--nav)">
+  <div style="max-width:1080px;margin:0 auto;padding:32px 24px 80px">
+    <button onclick="goBack()" class="btn btn-secondary btn-sm" style="margin-bottom:28px">← Back</button>
+    <div class="detail-grid" id="productDetail"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LOGIN PAGE -->
+<!-- ============================================================ -->
+<div class="page" id="page-login">
+  <div class="login-wrap">
+    <div style="width:100%;max-width:420px">
+      <div style="text-align:center;margin-bottom:28px">
+        <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#0047e1,#00b4d8);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px">📱</div>
+        <h1 style="font-family:var(--font-head);font-weight:700;font-size:28px;margin-bottom:6px">Staff Portal</h1>
+        <p style="color:var(--text3);font-size:14px">Krishna Store · Authorized Personnel Only</p>
+      </div>
+      <div class="card" style="margin-bottom:18px">
+        <div class="form-group">
+          <div>
+            <label class="form-label">USERNAME</label>
+            <input placeholder="Enter username" id="loginUser" onkeydown="if(event.key==='Enter')doLogin()">
+          </div>
+          <div>
+            <label class="form-label">PASSWORD</label>
+            <input type="password" placeholder="Enter password" id="loginPass" onkeydown="if(event.key==='Enter')doLogin()">
+          </div>
+          <div id="loginErr" style="display:none;background:rgba(232,65,82,.1);color:#c0392b;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700"></div>
+          <button class="btn btn-primary btn-full" id="loginBtn" onclick="doLogin()">Login →</button>
+        </div>
+      </div>
+      <div class="cred-box">
+        <div style="font-size:11px;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">🔑 Portal Access Credentials</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="card" style="padding:12px 14px;border-radius:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:12px;font-weight:800;color:var(--accent)">👑 OWNER / SUPER ADMIN</span>
+              <span class="badge badge-blue">Full Access</span>
+            </div>
+            <div style="font-size:12px;color:var(--text2);font-family:monospace">
+              <div>Username: <strong style="color:var(--text)">ksowner</strong></div>
+              <div>Password: <strong style="color:var(--text)">ksowner1234</strong></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px 14px;border-radius:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:12px;font-weight:800;color:#7c3aed">📦 INVENTORY MANAGER</span>
+              <span class="badge badge-purple">Limited</span>
+            </div>
+            <div style="font-size:12px;color:var(--text2);font-family:monospace">
+              <div>Username: <strong style="color:var(--text)">ksinventory</strong></div>
+              <div>Password: <strong style="color:var(--text)">ksinventory1234</strong></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:10px;line-height:1.6">⚠️ Credential box visible for demo. Remove before going live.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- OWNER DASHBOARD -->
+<!-- ============================================================ -->
+<div class="page" id="page-ownerDash">
+  <div class="dash-layout">
+    <div class="sidebar" id="ownerSidebar">
+      <div class="sidebar-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#0047e1,#00b4d8);display:flex;align-items:center;justify-content:center;font-size:18px">📱</div>
+          <div>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:14px">Krishna Store</div>
+            <div style="font-size:10px;color:var(--accent);font-weight:800">👑 OWNER PANEL</div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(0,71,225,.12),rgba(0,180,216,.06));border:1px solid rgba(0,71,225,.2);border-radius:10px;padding:8px 12px;margin:12px 0">
+          <div style="font-size:11px;font-weight:700;color:var(--accent)">Logged in as</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text)">Store Owner</div>
+          <div style="font-size:10px;color:var(--text3)">Super Admin · Full Access</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-btn active" onclick="setDashTab('overview',this)" data-tab="overview">📊 Overview</button>
+        <button class="sidebar-btn" onclick="setDashTab('insights',this)" data-tab="insights">📈 Insights</button>
+        <button class="sidebar-btn" onclick="setDashTab('finance',this)" data-tab="finance">💰 Finance</button>
+        <button class="sidebar-btn" onclick="setDashTab('products',this)" data-tab="products">📱 Products</button>
+        <button class="sidebar-btn" onclick="setDashTab('offers-mgmt',this)" data-tab="offers-mgmt">🎉 Offers</button>
+        <button class="sidebar-btn" onclick="setDashTab('inquiries',this)" data-tab="inquiries">📩 Inquiries</button>
+        <button class="sidebar-btn" onclick="setDashTab('complaints',this)" data-tab="complaints">🚨 Complaints</button>
+        <button class="sidebar-btn" onclick="setDashTab('stores-mgmt',this)" data-tab="stores-mgmt">🏬 Stores</button>
+        <button class="sidebar-btn" onclick="setDashTab('roles',this)" data-tab="roles">👥 Roles</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn btn-secondary btn-full btn-sm" style="margin-bottom:8px" onclick="toggleTheme()">🌙 Toggle Theme</button>
+        <button class="btn btn-danger btn-full btn-sm" onclick="doLogout()">🚪 Logout</button>
+      </div>
+    </div>
+    <div class="sidebar-overlay" id="ownerOverlay" onclick="closeSidebar()"></div>
+    <div class="dash-main" id="ownerMain">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+        <button class="btn btn-secondary btn-sm sidebar-toggle" onclick="openSidebar()" style="display:none">☰ Menu</button>
+      </div>
+      <div class="dash-page active" id="dash-overview"></div>
+      <div class="dash-page" id="dash-insights"></div>
+      <div class="dash-page" id="dash-finance"></div>
+      <div class="dash-page" id="dash-products"></div>
+      <div class="dash-page" id="dash-offers-mgmt"></div>
+      <div class="dash-page" id="dash-inquiries"></div>
+      <div class="dash-page" id="dash-complaints"></div>
+      <div class="dash-page" id="dash-stores-mgmt"></div>
+      <div class="dash-page" id="dash-roles"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- INVENTORY DASHBOARD -->
+<!-- ============================================================ -->
+<div class="page" id="page-inventoryDash">
+  <div class="dash-layout">
+    <div class="sidebar" id="invSidebar">
+      <div class="sidebar-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:18px">📦</div>
+          <div>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:14px">Krishna Store</div>
+            <div style="font-size:10px;color:#7c3aed;font-weight:800">📦 INVENTORY</div>
+          </div>
+        </div>
+        <div style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:8px 12px;margin:12px 0">
+          <div style="font-size:11px;font-weight:700;color:#7c3aed">Logged in as</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text)">Inventory Manager</div>
+          <div style="font-size:10px;color:var(--text3)">Limited Access</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-btn active" onclick="setInvTab('inv-products',this)">📱 Products</button>
+        <button class="sidebar-btn" onclick="setInvTab('inv-offers',this)">🎉 Offers</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn btn-secondary btn-full btn-sm" style="margin-bottom:8px" onclick="toggleTheme()">🌙 Toggle Theme</button>
+        <button class="btn btn-danger btn-full btn-sm" onclick="doLogout()">🚪 Logout</button>
+      </div>
+    </div>
+    <div class="sidebar-overlay" id="invOverlay" onclick="closeInvSidebar()"></div>
+    <div class="dash-main" id="invMain">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+        <button class="btn btn-secondary btn-sm sidebar-toggle" onclick="openInvSidebar()" style="display:none">☰ Menu</button>
+      </div>
+      <div class="dash-page active" id="inv-products"></div>
+      <div class="dash-page" id="inv-offers"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" style="display:none"></div>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================================ -->
+<script>
+// ─── DATA ───────────────────────────────────────────────────────
+const PRODUCTS = [
+  {id:1,name:"iPhone 15 Pro Max",brand:"Apple",cat:"Smartphones",price:159900,mrp:174900,specs:"A17 Pro · 48MP · 256GB · Titanium",stock:"In Stock",views:842,discount:9,emoji:"📱",cost:140000,revenue:319800},
+  {id:2,name:"Samsung Galaxy S24 Ultra",brand:"Samsung",cat:"Smartphones",price:129999,mrp:144999,specs:"SD 8 Gen 3 · 200MP · 512GB",stock:"In Stock",views:731,discount:10,emoji:"📱",cost:110000,revenue:259998},
+  {id:3,name:"Realme 12 Pro+",brand:"Realme",cat:"Smartphones",price:29999,mrp:33999,specs:"SD 7s Gen 2 · 50MP · 256GB",stock:"In Stock",views:512,discount:12,emoji:"📱",cost:24000,revenue:89997},
+  {id:4,name:"Redmi Note 13 Pro",brand:"Redmi",cat:"Smartphones",price:24999,mrp:28999,specs:"Dimensity 7200 · 200MP · 256GB",stock:"In Stock",views:623,discount:14,emoji:"📱",cost:20000,revenue:124995},
+  {id:5,name:"Vivo V30 Pro",brand:"Vivo",cat:"Smartphones",price:49999,mrp:54999,specs:"SD 8s Gen 3 · 50MP · 256GB",stock:"In Stock",views:398,discount:9,emoji:"📱",cost:42000,revenue:149997},
+  {id:6,name:"OnePlus 12R",brand:"OnePlus",cat:"Smartphones",price:39999,mrp:44999,specs:"SD 8 Gen 2 · 50MP · 256GB",stock:"Low Stock",views:445,discount:11,emoji:"📱",cost:33000,revenue:79998},
+  {id:7,name:"Samsung Galaxy A55",brand:"Samsung",cat:"Smartphones",price:34999,mrp:38999,specs:"Exynos 1480 · 50MP · 256GB",stock:"In Stock",views:389,discount:10,emoji:"📱",cost:29000,revenue:104997},
+  {id:8,name:"iPhone 14",brand:"Apple",cat:"Smartphones",price:69900,mrp:79900,specs:"A15 Bionic · 12MP · 128GB",stock:"In Stock",views:567,discount:13,emoji:"📱",cost:58000,revenue:209700},
+  {id:9,name:"Realme GT 6",brand:"Realme",cat:"Smartphones",price:47999,mrp:52999,specs:"SD 8s Gen 3 · 50MP · 120W · 256GB",stock:"Upcoming",views:678,discount:9,emoji:"📱",cost:40000,revenue:0},
+  {id:10,name:"Redmi 13C 5G",brand:"Redmi",cat:"Smartphones",price:12999,mrp:14999,specs:"Dimensity 6100+ · 50MP · 128GB",stock:"In Stock",views:445,discount:13,emoji:"📱",cost:10500,revenue:64995},
+  {id:11,name:"Sony WH-1000XM5",brand:"Sony",cat:"Earbuds & Audio",price:24990,mrp:29990,specs:"ANC · 30hr · LDAC · Multipoint",stock:"In Stock",views:278,discount:17,emoji:"🎧",cost:19000,revenue:49980},
+  {id:12,name:"OnePlus Buds Pro 2",brand:"OnePlus",cat:"Earbuds & Audio",price:7999,mrp:9999,specs:"ANC · 36hr · LHDC 5.0",stock:"In Stock",views:312,discount:20,emoji:"🎧",cost:6000,revenue:31996},
+  {id:13,name:"Boat Airdopes 141",brand:"Boat",cat:"Earbuds & Audio",price:999,mrp:2990,specs:"42hr Playback · IPX4 · Instant Connect",stock:"In Stock",views:534,discount:67,emoji:"🎧",cost:600,revenue:9990},
+  {id:14,name:"Samsung Galaxy Buds3 Pro",brand:"Samsung",cat:"Earbuds & Audio",price:17990,mrp:19990,specs:"ANC · 30hr · Hi-Fi Sound",stock:"In Stock",views:201,discount:10,emoji:"🎧",cost:14000,revenue:35980},
+  {id:15,name:"Apple MagSafe Charger",brand:"Apple",cat:"Chargers & Cables",price:3900,mrp:4500,specs:"15W Wireless · MagSafe · USB-C",stock:"In Stock",views:145,discount:13,emoji:"🔌",cost:2800,revenue:19500},
+  {id:16,name:"Anker 65W GaN Charger",brand:"Anker",cat:"Chargers & Cables",price:2499,mrp:2999,specs:"65W · GaN · 3-Port · PD 3.0",stock:"In Stock",views:198,discount:17,emoji:"🔌",cost:1700,revenue:12495},
+  {id:17,name:"Apple Watch Series 9",brand:"Apple",cat:"Smartwatches",price:41900,mrp:45900,specs:"S9 SiP · Always-On · Health Suite",stock:"In Stock",views:334,discount:9,emoji:"⌚",cost:34000,revenue:125700},
+  {id:18,name:"Samsung Galaxy Watch 6",brand:"Samsung",cat:"Smartwatches",price:24999,mrp:28999,specs:"Exynos W930 · Body Comp · 40hr",stock:"In Stock",views:256,discount:14,emoji:"⌚",cost:19000,revenue:74997},
+  {id:19,name:"Spigen iPhone 15 Case",brand:"Spigen",cat:"Covers & Cases",price:1299,mrp:1799,specs:"Military Grade · AirCushion · Clear",stock:"In Stock",views:423,discount:28,emoji:"📦",cost:700,revenue:6495},
+  {id:20,name:"Anker PowerCore 26800",brand:"Anker",cat:"Power Banks",price:3999,mrp:4999,specs:"26800mAh · 65W PD · Dual USB-A",stock:"In Stock",views:289,discount:20,emoji:"🔋",cost:2800,revenue:15996},
+];
+
+const INQUIRIES = [
+  {id:1,name:"Rahul Sharma",phone:"9876543210",product:"iPhone 15 Pro Max",address:"Deoghar Town",type:"Home Delivery",loc:"VIP Chowk",date:"2024-03-15",status:"Pending"},
+  {id:2,name:"Priya Devi",phone:"9123456789",product:"Samsung Galaxy S24 Ultra",address:"Near Station,Jasidih",type:"Store Visit",loc:"Jasidih Market",date:"2024-03-14",status:"Resolved"},
+  {id:3,name:"Amit Kumar",phone:"8765432109",product:"Realme 12 Pro+",address:"Madhupur Bazaar",type:"Home Delivery",loc:"Madhupur",date:"2024-03-14",status:"Pending"},
+  {id:4,name:"Sunita Mahato",phone:"9988776655",product:"Apple Watch Series 9",address:"Deoghar",type:"Home Delivery",loc:"VIP Chowk",date:"2024-03-13",status:"Resolved"},
+  {id:5,name:"Vikash Singh",phone:"7654321098",product:"OnePlus 12R",address:"Madhupur",type:"Store Visit",loc:"Madhupur",date:"2024-03-12",status:"Pending"},
+];
+
+const COMPLAINTS = [
+  {id:1,name:"Ravi Gupta",phone:"9876512345",type:"Warranty",product:"Redmi Note 13 Pro",issue:"Display flickering after 2 weeks.",date:"2024-03-13",status:"Open"},
+  {id:2,name:"Meena Kumari",phone:"8976543210",type:"Feedback",product:"Boat Airdopes 141",issue:"Great product, fast delivery! Box was slightly dented.",date:"2024-03-11",status:"Resolved"},
+  {id:3,name:"Deepak Yadav",phone:"9765432109",type:"Complaint",product:"Anker 65W GaN",issue:"Charger stopped working after 1 week. Need replacement.",date:"2024-03-10",status:"In Progress"},
+];
+
+const STORE_REVENUE = [
+  {name:"VIP Chowk",rev:420000,inquiries:18},
+  {name:"Jasidih Market",rev:310000,inquiries:12},
+  {name:"Madhupur",rev:215000,inquiries:9},
+];
+
+const EXPENSES = [
+  {label:"Rent (3 Locations)",amount:45000},
+  {label:"Staff Salaries",amount:78000},
+  {label:"Electricity & Misc",amount:12000},
+  {label:"Logistics",amount:8000},
+];
+
+const CATEGORY_DATA = [
+  {name:"Smartphones",pct:58,color:"#0047e1"},
+  {name:"Earbuds & Audio",pct:18,color:"#7c3aed"},
+  {name:"Smartwatches",pct:12,color:"#00b4d8"},
+  {name:"Chargers",pct:7,color:"#00b894"},
+  {name:"Others",pct:5,color:"#f59e0b"},
+];
+
+// OFFERS DATA — managed by owner
+const OFFERS = [
+  {id:1,title:"Holi Special Sale",desc:"Extra ₹2000 off on all iPhones",emoji:"🎉",color:"#e84152",active:true,endDate:new Date(Date.now()+2*24*3600*1000+5*3600*1000+30*60*1000),suggestion:"📱 Stack with 0% EMI for max savings!"},
+  {id:2,title:"Summer Earbuds Fest",desc:"20% off on all earbuds & headphones",emoji:"🎧",color:"#7c3aed",active:true,endDate:new Date(Date.now()+4*24*3600*1000+12*3600*1000),suggestion:"🎧 Best time to grab Sony WH-1000XM5!"},
+  {id:3,title:"EMI Zero Fest",desc:"0% EMI on orders above ₹10,000 on all banks",emoji:"💳",color:"#0047e1",active:false,endDate:new Date(Date.now()-1000),suggestion:"💳 Combine with HDFC card for extra cashback"},
+];
+
+// ─── STATE ───────────────────────────────────────────────────────
+let state = {
+  theme: 'light',
+  currentPage: 'home',
+  prevPage: 'home',
+  userRole: null,
+  products: [...PRODUCTS],
+  inquiries: [...INQUIRIES],
+  complaints: [...COMPLAINTS],
+  offers: OFFERS.map(o=>({...o})),
+  homeCat: 'All',
+  selectedProduct: null,
+  timers: {},
+  currentDashTab: 'overview',
+  currentInvTab: 'inv-products',
+};
+
+// ─── THEME ───────────────────────────────────────────────────────
+function toggleTheme() {
+  state.theme = state.theme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', state.theme);
+  const btn = document.getElementById('themeBtn');
+  if(btn) btn.textContent = state.theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+}
+
+// ─── TOAST ───────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = (type==='success'?'✅ ':type==='error'?'❌ ':'ℹ️ ') + msg;
+  t.className = 'toast toast-' + type;
+  t.style.display = 'block';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ t.style.display='none'; }, 3000);
+}
+
+// ─── NAV ─────────────────────────────────────────────────────────
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg = document.getElementById('page-' + page);
+  if(pg) pg.classList.add('active');
+  state.prevPage = state.currentPage;
+  state.currentPage = page;
+  
+  // Show/hide navbar
+  const nb = document.getElementById('navbar');
+  const dash = ['ownerDash','inventoryDash'];
+  if(nb) nb.style.display = dash.includes(page) ? 'none' : '';
+
+  // Update desktop nav active state
+  const navMap = {home:0, phones:1, accessories:2, stores:3, support:4};
+  if(navMap[page] !== undefined) {
+    document.querySelectorAll('.nav-link').forEach((b,i)=>b.classList.toggle('active', i===navMap[page]));
+  }
+  
+  // Update mobile nav active state
+  setMobileActive(page);
+  
+  // Close mobile menu if open
+  closeMobileMenu();
+
+  // Render page content
+  if(page==='home') renderHome();
+  if(page==='phones') renderPhones();
+  if(page==='accessories') renderAccs();
+  if(page==='stores') renderStores();
+  if(page==='ownerDash') { renderOwnerDash(); checkMobileToggle(); }
+  if(page==='inventoryDash') { renderInvDash(); checkMobileToggle(); }
+  
+  window.scrollTo(0,0);
+}
+
+function setActive(btn) {
+  // kept for backward compat with inline onclick handlers - now a no-op since showPage handles it
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const ham = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+function setMobileActive(page) {
+  document.querySelectorAll('.mobile-nav-link').forEach(b => b.classList.remove('active'));
+  // Map page names to mobile nav link text patterns
+  const pageMap = {home:'Home', phones:'Phones', accessories:'Accessories', stores:'Stores', support:'Support', login:'Staff Login'};
+  const label = pageMap[page];
+  if(label) {
+    document.querySelectorAll('.mobile-nav-link').forEach(b => {
+      if(b.textContent.includes(label)) b.classList.add('active');
+    });
+  }
+}
+
+function goBack() {
+  showPage(state.prevPage || 'home');
+}
+
+// ─── SIDEBAR ──────────────────────────────────────────────────────
+function openSidebar() {
+  document.getElementById('ownerSidebar').classList.add('open');
+  document.getElementById('ownerOverlay').classList.add('open');
+}
+function closeSidebar() {
+  document.getElementById('ownerSidebar').classList.remove('open');
+  document.getElementById('ownerOverlay').classList.remove('open');
+}
+function openInvSidebar() {
+  document.getElementById('invSidebar').classList.add('open');
+  document.getElementById('invOverlay').classList.add('open');
+}
+function closeInvSidebar() {
+  document.getElementById('invSidebar').classList.remove('open');
+  document.getElementById('invOverlay').classList.remove('open');
+}
+
+// Check if mobile
+function isMobile() { return window.innerWidth <= 900; }
+
+// Show toggle button on mobile
+function checkMobileToggle() {
+  const btns = document.querySelectorAll('.sidebar-toggle');
+  btns.forEach(b => b.style.display = isMobile() ? 'flex' : 'none');
+}
+window.addEventListener('resize', checkMobileToggle);
+
+// ─── LOGIN ────────────────────────────────────────────────────────
+const CREDS = {
+  owner: {username:'ksowner', password:'ksowner1234'},
+  inventory: {username:'ksinventory', password:'ksinventory1234'},
+};
+
+function doLogin() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const err = document.getElementById('loginErr');
+  const btn = document.getElementById('loginBtn');
+  btn.textContent = 'Verifying...';
+  btn.disabled = true;
+  setTimeout(()=>{
+    btn.textContent = 'Login →'; btn.disabled = false;
+    if(u===CREDS.owner.username && p===CREDS.owner.password){
+      state.userRole='owner'; showPage('ownerDash');
+    } else if(u===CREDS.inventory.username && p===CREDS.inventory.password){
+      state.userRole='inventory'; showPage('inventoryDash');
+    } else {
+      err.textContent = '🔒 Invalid credentials. Please check username & password.';
+      err.style.display = 'block';
+    }
+  }, 800);
+}
+
+function doLogout() {
+  state.userRole = null;
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  showPage('home');
+}
+
+// ─── PRODUCT CARD ─────────────────────────────────────────────────
+function prodCard(p, delay=0) {
+  const stockColor = p.stock==='In Stock'?'green':p.stock==='Low Stock'?'orange':'gray';
+  return `
+  <div class="prod-card fu" style="animation-delay:${delay}s" onclick="viewProduct(${p.id})">
+    <div class="prod-img">
+      ${p.emoji}
+      ${p.discount>0?`<div class="prod-discount">-${p.discount}%</div>`:''}
+      <div class="prod-stock"><span class="badge badge-${stockColor}">${p.stock}</span></div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-brand">${p.brand}</div>
+      <div class="prod-name">${p.name}</div>
+      <div class="prod-specs">${p.specs}</div>
+      <div class="prod-price">
+        <span class="price-main">₹${p.price.toLocaleString('en-IN')}</span>
+        <span class="price-mrp">₹${p.mrp.toLocaleString('en-IN')}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function viewProduct(id) {
+  state.selectedProduct = state.products.find(p=>p.id===id);
+  if(!state.selectedProduct) return;
+  renderProduct();
+  showPage('product');
+}
+
+// ─── HOME ─────────────────────────────────────────────────────────
+function renderHome() {
+  renderHomeCats();
+  renderHomeProds();
+  renderHomeOffers();
+  renderWhyUs();
+  renderFooterIn('homeFooter');
+}
+
+function renderHomeCats() {
+  const cats = ['All','Smartphones','Earbuds & Audio','Chargers & Cables','Smartwatches','Covers & Cases','Power Banks'];
+  const el = document.getElementById('homeCatPills');
+  if(!el) return;
+  el.innerHTML = cats.map(c=>`<button class="cat-pill${state.homeCat===c?' active':''}" onclick="setHomeCat('${c}')">${c}</button>`).join('');
+}
+
+function setHomeCat(cat) {
+  state.homeCat = cat;
+  renderHomeCats();
+  renderHomeProds();
+}
+
+function filterByBrand(brand) {
+  state.homeCat = 'All';
+  renderHomeCats();
+  const el = document.getElementById('homeProdsGrid');
+  if(!el) return;
+  const filtered = state.products.filter(p=>p.brand===brand);
+  el.innerHTML = filtered.map((p,i)=>prodCard(p,i*0.04)).join('');
+  document.getElementById('home-prods').scrollIntoView({behavior:'smooth'});
+}
+
+function filterCat(cat) {
+  state.homeCat = cat;
+  renderHomeCats();
+  renderHomeProds();
+  document.getElementById('home-prods').scrollIntoView({behavior:'smooth'});
+}
+
+function renderHomeProds() {
+  const el = document.getElementById('homeProdsGrid');
+  if(!el) return;
+  const filtered = state.homeCat==='All' ? state.products : state.products.filter(p=>p.cat===state.homeCat);
+  el.innerHTML = filtered.map((p,i)=>prodCard(p,i*0.04)).join('');
+}
+
+function renderHomeOffers() {
+  const el = document.getElementById('homeOffersGrid');
+  if(!el) return;
+  const active = state.offers.filter(o=>o.active && o.endDate > new Date());
+  if(active.length===0){
+    el.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,.6);padding:40px">No active offers right now. Check back soon!</div>`;
+    return;
+  }
+  el.innerHTML = active.map(o=>`
+  <div style="background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:16px;padding:22px;backdrop-filter:blur(10px)">
+    <div style="font-size:36px;margin-bottom:10px">${o.emoji}</div>
+    <div style="font-family:var(--font-head);font-weight:700;font-size:18px;color:#fff;margin-bottom:6px">${o.title}</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:14px">${o.desc}</div>
+    <div style="font-size:11px;color:#00ffc8;font-weight:700;margin-bottom:14px">${o.suggestion}</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">⏳ Ends In</div>
+    <div class="offer-timer" id="homeTimer_${o.id}"></div>
+    <div style="margin-top:14px">
+      <a href="https://wa.me/91XXXXXXXXXX?text=Hi, I want to avail ${o.title}" target="_blank" class="btn btn-wa btn-sm">💬 Grab This Deal</a>
+    </div>
+  </div>`).join('');
+  
+  // Start timers
+  active.forEach(o=>startTimer(o.id, o.endDate, `homeTimer_${o.id}`));
+}
+
+function renderWhyUs() {
+  const el = document.getElementById('whyGrid');
+  if(!el) return;
+  const items = [
+    {i:"🏆",t:"100% Original",d:"Genuine devices from authorized distributors"},
+    {i:"🚚",t:"Home Delivery",d:"Doorstep delivery across Jharkhand"},
+    {i:"💳",t:"Easy EMI",d:"0% EMI on leading banks, no hidden charges"},
+    {i:"🛡",t:"Warranty",d:"Full manufacturer warranty at all 3 locations"},
+    {i:"🔧",t:"After Sales",d:"Expert service & troubleshooting"},
+    {i:"💬",t:"WhatsApp",d:"Instant response 7 days a week"},
+  ];
+  el.innerHTML = items.map(w=>`
+  <div class="feature-card">
+    <div class="feature-icon">${w.i}</div>
+    <div class="feature-title">${w.t}</div>
+    <div class="feature-desc">${w.d}</div>
+  </div>`).join('');
+}
+
+// ─── OFFER TIMER ──────────────────────────────────────────────────
+function startTimer(id, endDate, containerId) {
+  if(state.timers[id]) clearInterval(state.timers[id]);
+  
+  function update() {
+    const el = document.getElementById(containerId);
+    if(!el) { clearInterval(state.timers[id]); return; }
+    const now = new Date();
+    const diff = endDate - now;
+    if(diff <= 0) {
+      el.innerHTML = `<span style="color:#e84152;font-weight:700;font-size:13px">⏰ Offer Expired!</span>`;
+      clearInterval(state.timers[id]);
+      return;
+    }
+    const days = Math.floor(diff/86400000);
+    const hrs = Math.floor((diff%86400000)/3600000);
+    const mins = Math.floor((diff%3600000)/60000);
+    const secs = Math.floor((diff%60000)/1000);
+    
+    el.innerHTML = `
+    ${days>0?`<div class="timer-block"><span class="timer-num">${String(days).padStart(2,'0')}</span><span class="timer-label">Days</span></div><span class="timer-sep">:</span>`:''}
+    <div class="timer-block"><span class="timer-num">${String(hrs).padStart(2,'0')}</span><span class="timer-label">Hrs</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-block"><span class="timer-num">${String(mins).padStart(2,'0')}</span><span class="timer-label">Min</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-block"><span class="timer-num">${String(secs).padStart(2,'0')}</span><span class="timer-label">Sec</span></div>`;
+  }
+  update();
+  state.timers[id] = setInterval(update, 1000);
+}
+
+// ─── PHONES / ACCESSORIES ─────────────────────────────────────────
+function renderPhones() {
+  const el = document.getElementById('phonesGrid');
+  if(!el) return;
+  const phones = state.products.filter(p=>p.cat==='Smartphones');
+  el.innerHTML = phones.map((p,i)=>prodCard(p,i*0.04)).join('');
+  renderFooterIn('phonesFooter');
+}
+
+function renderAccs() {
+  const el = document.getElementById('accsGrid');
+  if(!el) return;
+  const accs = state.products.filter(p=>p.cat!=='Smartphones');
+  el.innerHTML = accs.map((p,i)=>prodCard(p,i*0.04)).join('');
+  renderFooterIn('accsFooter');
+}
+
+// ─── STORES ───────────────────────────────────────────────────────
+function renderStores() {
+  const el = document.getElementById('storesGrid');
+  if(!el) return;
+  const stores = [
+    {name:"VIP Chowk, Deoghar",area:"Flagship Store · Main Branch",phone:"+91 94310 XXXXX",hours:"Mon–Sun: 9:30 AM – 9:00 PM",emoji:"🏬",c:"#0047e1"},
+    {name:"Jasidih Market, Deoghar",area:"Near Railway Station",phone:"+91 94310 XXXXX",hours:"Mon–Sun: 10:00 AM – 8:30 PM",emoji:"🏪",c:"#7c3aed"},
+    {name:"Madhupur, Jharkhand",area:"Madhupur Town Centre",phone:"+91 94310 XXXXX",hours:"Mon–Sat: 10:00 AM – 8:00 PM",emoji:"🏢",c:"#00b894"},
+  ];
+  el.innerHTML = stores.map(s=>`
+  <div class="store-card">
+    <div class="store-top" style="background:${s.c}"></div>
+    <div style="padding:22px">
+      <div style="font-size:48px;margin-bottom:14px">${s.emoji}</div>
+      <h3 style="font-family:var(--font-head);font-weight:700;font-size:18px;margin-bottom:4px">${s.name}</h3>
+      <div style="font-size:12px;color:${s.c};font-weight:700;margin-bottom:16px">${s.area}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+        <div style="font-size:13px">📞 ${s.phone}</div>
+        <div style="font-size:13px;color:var(--text2)">🕐 ${s.hours}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <a href="https://maps.google.com" target="_blank" class="btn btn-ghost btn-sm" style="justify-content:center">🗺 Directions</a>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-wa btn-sm" style="justify-content:center">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>`).join('');
+  renderFooterIn('storesFooter');
+}
+
+// ─── SUPPORT ──────────────────────────────────────────────────────
+function submitSupport() {
+  document.getElementById('supportFormCard').style.display='none';
+  document.getElementById('supportSuccessCard').style.display='block';
+}
+function resetSupport() {
+  document.getElementById('supportFormCard').style.display='block';
+  document.getElementById('supportSuccessCard').style.display='none';
+  ['suppName','suppPhone','suppProduct','suppMessage'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
+}
+
+// ─── PRODUCT DETAIL ───────────────────────────────────────────────
+function renderProduct() {
+  const p = state.selectedProduct;
+  if(!p) return;
+  const branches = [
+    {name:"VIP Chowk, Deoghar",dist:"~2 km",phone:"+91 94310 XXXXX"},
+    {name:"Jasidih Market, Deoghar",dist:"~8 km",phone:"+91 94310 XXXXX"},
+    {name:"Madhupur, Jharkhand",dist:"~18 km",phone:"+91 94310 XXXXX"},
+  ];
+  const stockColor = p.stock==='In Stock'?'green':p.stock==='Low Stock'?'orange':'gray';
+  const el = document.getElementById('productDetail');
+  el.innerHTML = `
+  <div>
+    <div class="detail-main-img">${p.emoji}</div>
+    <div class="detail-thumbs">
+      ${[1,2,3,4].map(()=>`<div class="detail-thumb">${p.emoji}</div>`).join('')}
+    </div>
+  </div>
+  <div>
+    <div style="font-size:11px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">${p.brand} · ${p.cat}</div>
+    <h1 style="font-family:var(--font-head);font-weight:700;font-size:clamp(20px,3vw,30px);line-height:1.2;margin-bottom:12px">${p.name}</h1>
+    <div style="font-size:14px;color:var(--text3);margin-bottom:16px">${p.specs}</div>
+    <div style="display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap">
+      <span class="badge badge-${stockColor}">${p.stock}</span>
+      ${p.discount>0?`<span class="badge badge-red">🔥 ${p.discount}% OFF</span>`:''}
+      <span class="badge badge-blue">💳 0% EMI Available</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:30px;flex-wrap:wrap">
+      <span style="font-family:var(--font-head);font-weight:700;font-size:clamp(24px,4vw,36px)">₹${p.price.toLocaleString('en-IN')}</span>
+      <span style="font-size:18px;color:var(--text3);text-decoration:line-through">₹${p.mrp.toLocaleString('en-IN')}</span>
+      <span style="color:#00b894;font-weight:700;font-size:14px">Save ₹${(p.mrp-p.price).toLocaleString('en-IN')}</span>
+    </div>
+
+    <div class="card" style="margin-bottom:14px" id="purchaseModeCard">
+      <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:14px">How would you like it?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px" id="modeBtns">
+        <button onclick="setMode('store')" id="modeStore" class="btn btn-secondary" style="flex-direction:column;align-items:center;padding:14px 10px;height:auto;border:2px solid var(--border)">
+          <span style="font-size:26px;margin-bottom:5px">🏪</span>
+          <span style="font-weight:700;font-size:13px">Visit Store</span>
+          <span style="font-size:11px;color:var(--text3);font-weight:400">Try &amp; buy in person</span>
+        </button>
+        <button onclick="setMode('delivery')" id="modeDelivery" class="btn btn-secondary" style="flex-direction:column;align-items:center;padding:14px 10px;height:auto;border:2px solid var(--border)">
+          <span style="font-size:26px;margin-bottom:5px">🚚</span>
+          <span style="font-weight:700;font-size:13px">Home Delivery</span>
+          <span style="font-size:11px;color:var(--text3);font-weight:400">Get it at your doorstep</span>
+        </button>
+      </div>
+      <div id="modeContent"></div>
+    </div>
+
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi, interested in ${encodeURIComponent(p.name+' at ₹'+p.price.toLocaleString())}" target="_blank" class="btn btn-wa btn-full btn-lg">💬 Inquire on WhatsApp</a>
+  </div>`;
+}
+
+function setMode(mode) {
+  const storeBtn = document.getElementById('modeStore');
+  const delivBtn = document.getElementById('modeDelivery');
+  const mc = document.getElementById('modeContent');
+  const p = state.selectedProduct;
+  
+  if(storeBtn) storeBtn.style.borderColor = mode==='store'?'var(--accent)':'var(--border)';
+  if(delivBtn) delivBtn.style.borderColor = mode==='delivery'?'var(--accent)':'var(--border)';
+  
+  if(mode==='store') {
+    mc.innerHTML = `
+    <div class="fu">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:10px;font-weight:600">Choose your nearest branch:</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+        <div style="background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div><div style="font-weight:700;font-size:13px">📍 VIP Chowk, Deoghar</div><div style="font-size:11px;color:var(--text3)">~2 km · +91 94310 XXXXX</div></div>
+          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-green btn-sm">Book Visit</a>
+        </div>
+        <div style="background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div><div style="font-weight:700;font-size:13px">📍 Jasidih Market</div><div style="font-size:11px;color:var(--text3)">~8 km · +91 94310 XXXXX</div></div>
+          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-green btn-sm">Book Visit</a>
+        </div>
+        <div style="background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div><div style="font-weight:700;font-size:13px">📍 Madhupur</div><div style="font-size:11px;color:var(--text3)">~18 km · +91 94310 XXXXX</div></div>
+          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-green btn-sm">Book Visit</a>
+        </div>
+      </div>
+      <button onclick="setMode('delivery')" class="btn btn-ghost btn-sm">Switch to Home Delivery 🚚</button>
+    </div>`;
+  } else {
+    mc.innerHTML = `
+    <div class="fu">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px">🚚 Delivery Details</div>
+      <div class="form-group">
+        <div class="form-row">
+          <input placeholder="Your Name" id="delName">
+          <input placeholder="Phone Number" id="delPhone">
+        </div>
+        <input value="${p?p.name:''}" readonly style="opacity:.6">
+        <textarea placeholder="Full Delivery Address" rows="2" id="delAddress"></textarea>
+        <input placeholder="Pincode" id="delPin">
+        <button class="btn btn-primary btn-full" onclick="submitDelivery()">Submit Inquiry →</button>
+      </div>
+    </div>`;
+  }
+}
+
+function submitDelivery() {
+  const name = document.getElementById('delName').value;
+  const phone = document.getElementById('delPhone').value;
+  const addr = document.getElementById('delAddress').value;
+  if(!name||!phone||!addr){showToast('Please fill all fields','error');return;}
+  document.getElementById('modeContent').innerHTML = `
+  <div style="text-align:center;padding:20px;animation:fadeUp .3s ease">
+    <div style="font-size:44px;margin-bottom:10px">✅</div>
+    <div style="font-weight:700;font-size:16px">Inquiry Received!</div>
+    <div style="font-size:13px;color:var(--text3);margin-top:6px">We'll contact you at <strong>${phone}</strong> shortly.</div>
+  </div>`;
+}
+
+// ─── FOOTER ───────────────────────────────────────────────────────
+function renderFooterIn(containerId) {
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  el.innerHTML = `<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#0047e1,#00b4d8);display:flex;align-items:center;justify-content:center;font-size:18px">📱</div>
+          <span style="font-family:var(--font-head);font-weight:700;font-size:17px">Krishna Store</span>
+        </div>
+        <p class="footer-text">Your trusted mobile destination. Premium phones, accessories, and expert service across Jharkhand.</p>
+      </div>
+      <div>
+        <div class="footer-title">Our Stores</div>
+        <p class="footer-text">📍 VIP Chowk, Deoghar</p>
+        <p class="footer-text">📍 Jasidih Market, Deoghar</p>
+        <p class="footer-text">📍 Madhupur, Jharkhand</p>
+      </div>
+      <div>
+        <div class="footer-title">Quick Links</div>
+        <button class="footer-link" onclick="showPage('phones')">Smartphones</button>
+        <button class="footer-link" onclick="showPage('accessories')">Accessories</button>
+        <button class="footer-link" onclick="showPage('stores')">Visit Stores</button>
+        <button class="footer-link" onclick="showPage('support')">Support</button>
+      </div>
+      <div>
+        <div class="footer-title">Contact</div>
+        <p class="footer-text">💬 WhatsApp: +91 94310 XXXXX</p>
+        <p class="footer-text">📧 info@krishnastore.in</p>
+        <p class="footer-text">🕐 Open 9:30 AM – 9 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span style="font-size:13px;color:var(--text3)">© 2024 Krishna Store. All rights reserved.</span>
+      <span style="font-size:12px;color:var(--text3)">Crafted by <span style="color:var(--accent);font-weight:700">Intersites Digital</span></span>
+    </div>
+  </div>
+</footer>`;
+}
+
+// ─── CHARTS ───────────────────────────────────────────────────────
+function lineChart(data, color='#0047e1', height=140) {
+  const w=600, h=height;
+  const vals = data.map(d=>d.value||0);
+  const max = Math.max(...vals)||1;
+  const pts = vals.map((v,i)=>[(i/(vals.length-1||1))*w, h-20-(v/max)*(h-30)]);
+  const path = pts.map((p,i)=>`${i===0?'M':'L'}${p[0]},${p[1]}`).join(' ');
+  const area = path + ` L${w},${h-20} L0,${h-20} Z`;
+  const gid = 'g'+color.replace('#','');
+  return `<div class="chart-wrap">
+  <svg viewBox="0 0 ${w} ${h}" style="width:100%;height:${height}px" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${color}" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="${area}" fill="url(#${gid})"/>
+    <path d="${path}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
+    ${pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${color}"/>`).join('')}
+  </svg></div>`;
+}
+
+function barChart(data, height=160) {
+  const max = Math.max(...data.map(d=>d.value||d.rev||0))||1;
+  const colors = ['#0047e1','#7c3aed','#00b894'];
+  return `<div class="bar-chart" style="height:${height}px;align-items:flex-end;padding-top:16px">
+  ${data.map((d,i)=>{
+    const v=d.value||d.rev||0; const pct=(v/max)*100;
+    return `<div class="bar-item" style="height:100%">
+      <div class="bar-label-top">₹${Math.round(v/1000)}k</div>
+      <div class="bar-body" style="background:${colors[i%3]}22;border-radius:6px;flex:1;display:flex;flex-direction:column;justify-content:flex-end">
+        <div class="bar-fill" style="height:${pct}%;background:${colors[i%3]};min-height:2px"></div>
+      </div>
+      <div class="bar-label-bot">${d.name||d.label||''}</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function pieChart(data) {
+  let start=0; const r=60,cx=80,cy=80;
+  const polar=(cx,cy,r,deg)=>{const rad=(deg-90)*Math.PI/180;return[cx+r*Math.cos(rad),cy+r*Math.sin(rad)];};
+  const slices = data.map(d=>{const a=(d.pct/100)*360,s=start;start+=a;return{...d,start:s,angle:a};});
+  return `<div class="pie-wrap">
+  <svg viewBox="0 0 160 160" style="width:130px;height:130px;flex-shrink:0">
+    ${slices.map(sl=>{
+      const[x1,y1]=polar(cx,cy,r,sl.start);const[x2,y2]=polar(cx,cy,r,sl.start+sl.angle);
+      const large=sl.angle>180?1:0;
+      return `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2} Z" fill="${sl.color}" opacity=".9"/>`;
+    }).join('')}
+    <circle cx="${cx}" cy="${cy}" r="38" fill="var(--card)"/>
+    <text x="${cx}" y="${cy-4}" text-anchor="middle" fill="var(--text)" font-size="10" font-weight="700" font-family="Syne">Mobile</text>
+    <text x="${cx}" y="${cy+10}" text-anchor="middle" fill="var(--text3)" font-size="9">Interest</text>
+  </svg>
+  <div class="pie-legend">
+    ${data.map(d=>`<div class="pie-legend-item"><div class="pie-dot" style="background:${d.color}"></div><span>${d.name}</span><span style="margin-left:auto;color:${d.color};font-weight:700">${d.pct}%</span></div>`).join('')}
+  </div></div>`;
+}
+
+// random trend data
+function genTrend(n,min,max) { return Array.from({length:n},()=>Math.floor(Math.random()*(max-min)+min)); }
+const REV_TREND = genTrend(30,120000,200000);
+const PROFIT_TREND = genTrend(30,35000,60000);
+const INQ_TREND = genTrend(30,2,10);
+
+// ─── OWNER DASHBOARD ──────────────────────────────────────────────
+function renderOwnerDash() {
+  renderDashTab('overview');
+  checkMobileToggle();
+}
+
+function setDashTab(tab, btn) {
+  document.querySelectorAll('#page-ownerDash .sidebar-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('#page-ownerDash .dash-page').forEach(p=>p.classList.remove('active'));
+  const pg = document.getElementById('dash-'+tab);
+  if(pg) pg.classList.add('active');
+  state.currentDashTab = tab;
+  renderDashTab(tab);
+  if(isMobile()) closeSidebar();
+}
+
+function renderDashTab(tab) {
+  const el = document.getElementById('dash-'+tab);
+  if(!el||el.dataset.rendered) return;
+  
+  if(tab==='overview') renderDashOverview(el);
+  else if(tab==='insights') renderDashInsights(el);
+  else if(tab==='finance') renderDashFinance(el);
+  else if(tab==='products') renderProductMgmt(el, true);
+  else if(tab==='offers-mgmt') renderOffersMgmt(el);
+  else if(tab==='inquiries') renderInquiries(el);
+  else if(tab==='complaints') renderComplaints(el);
+  else if(tab==='stores-mgmt') renderStoresMgmt(el);
+  else if(tab==='roles') renderRoles(el);
+  
+  el.dataset.rendered = '1';
+}
+
+function refreshDashTab(tab) {
+  const el = document.getElementById('dash-'+tab);
+  if(el) { delete el.dataset.rendered; renderDashTab(tab); }
+}
+
+function renderDashOverview(el) {
+  const prods = state.products;
+  el.innerHTML = `
+  <div class="fu">
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:28px;margin-bottom:4px">Dashboard Overview</h2>
+      <p style="color:var(--text3);font-size:13px">Krishna Store — All 3 Locations · ${new Date().toDateString()}</p>
+    </div>
+    <div class="grid-kpi" style="margin-bottom:24px">
+      ${kpiCard('📱','Total Products',prods.length,'#0047e1')}
+      ${kpiCard('📩','Monthly Inquiries',47,'#7c3aed')}
+      ${kpiCard('💰','Monthly Revenue','₹9.45L','#00b894')}
+      ${kpiCard('🎉','Active Offers',state.offers.filter(o=>o.active&&o.endDate>new Date()).length,'#f59e0b')}
+      ${kpiCard('✅','In Stock',prods.filter(p=>p.stock==='In Stock').length,'#059669')}
+      ${kpiCard('🚨','Complaints',state.complaints.filter(c=>c.status==='Open').length,'#e84152')}
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🏆 Top Viewed Phones</div>
+        ${[...prods].sort((a,b)=>b.views-a.views).slice(0,5).map((p,i)=>`
+        <div class="list-row">
+          <div style="display:flex;gap:10px;align-items:center">
+            <span style="background:var(--accent-bg);color:var(--accent);width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">${i+1}</span>
+            <div><div style="font-weight:700;font-size:13px">${p.name}</div><div style="font-size:11px;color:var(--text3)">${p.brand}</div></div>
+          </div>
+          <span class="badge badge-blue">👁 ${p.views}</span>
+        </div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:14px">📊 Revenue by Store</div>
+        ${barChart(STORE_REVENUE.map(s=>({name:s.name.split(',')[0],rev:s.rev})),160)}
+      </div>
+    </div>
+  </div>`;
+}
+
+function kpiCard(icon, label, value, color) {
+  return `<div class="kpi-card">
+    <div class="kpi-stripe" style="background:${color}"></div>
+    <div class="kpi-icon">${icon}</div>
+    <div class="kpi-val" style="color:${color}">${value}</div>
+    <div class="kpi-label">${label}</div>
+  </div>`;
+}
+
+function renderDashInsights(el) {
+  const prods = state.products;
+  el.innerHTML = `
+  <div class="fu">
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:28px;margin-bottom:4px">📊 Business Insights</h2>
+      <p style="color:var(--text3);font-size:13px">SaaS-grade analytics · March 2024</p>
+    </div>
+    <div class="grid-kpi" style="margin-bottom:22px">
+      ${kpiCard('📱','Total Products',prods.length,'#0047e1')}
+      ${kpiCard('📩','Monthly Inquiries',47,'#7c3aed')}
+      ${kpiCard('🎉','Active Offers',state.offers.filter(o=>o.active).length,'#f59e0b')}
+      ${kpiCard('✅','In Stock',prods.filter(p=>p.stock==='In Stock').length,'#00b894')}
+      ${kpiCard('⏳','Pending Inquiries',state.inquiries.filter(i=>i.status==='Pending').length,'#f59e0b')}
+      ${kpiCard('🚨','Open Complaints',state.complaints.filter(c=>c.status==='Open').length,'#e84152')}
+    </div>
+    <div class="grid-2" style="margin-bottom:20px">
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:4px">📈 Inquiry Trend — 30 Days</div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:14px">Daily customer inquiries</div>
+        ${lineChart(INQ_TREND.map(v=>({value:v})),'#7c3aed',130)}
+      </div>
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:4px">🎯 Customer Interest</div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:14px">By product category</div>
+        ${pieChart(CATEGORY_DATA)}
+      </div>
+    </div>
+    <div class="grid-2" style="margin-bottom:20px">
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:4px">🏬 Store-wise Inquiries</div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:14px">By branch this month</div>
+        ${barChart(STORE_REVENUE.map(s=>({name:s.name.split(',')[0],value:s.inquiries})),160)}
+      </div>
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🏥 Inventory Health</div>
+        ${['In Stock','Low Stock','Out of Stock','Upcoming'].map(status=>{
+          const c=prods.filter(p=>p.stock===status).length;
+          const col=status==='In Stock'?'#00b894':status==='Low Stock'?'#f59e0b':status==='Out of Stock'?'#e84152':'#0047e1';
+          return `<div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px;font-weight:700">
+              <span>${status}</span><span style="color:${col}">${c}</span>
+            </div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${(c/prods.length)*100}%;background:${col}"></div></div>
+          </div>`;
+        }).join('')}
+        ${prods.filter(p=>p.stock==='Low Stock').length>0?`
+        <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:10px 14px">
+          <div style="font-weight:700;font-size:12px;color:#b45309">⚠️ Low Stock Alert</div>
+          <div style="font-size:11px;color:#92400e;margin-top:4px">${prods.filter(p=>p.stock==='Low Stock').map(p=>p.name).join(', ')} — restock recommended.</div>
+        </div>`:''}
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🔥 Most Viewed Products</div>
+      ${[...prods].sort((a,b)=>b.views-a.views).slice(0,6).map((p,i)=>`
+      <div class="list-row">
+        <div style="display:flex;gap:12px;align-items:center">
+          <span style="background:var(--accent-bg);color:var(--accent);width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0">${i+1}</span>
+          <div><div style="font-weight:700;font-size:13px">${p.name}</div><div style="font-size:11px;color:var(--text3)">${p.brand}</div></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="width:70px;background:var(--bg3);border-radius:4px;height:6px;overflow:hidden">
+            <div style="width:${(p.views/842)*100}%;height:100%;background:var(--accent);border-radius:4px"></div>
+          </div>
+          <span class="badge badge-blue">👁 ${p.views}</span>
+        </div>
+      </div>`).join('')}
+    </div>
+    <div class="card">
+      <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🚨 Complaint Intelligence</div>
+      <div class="grid-3" style="margin-bottom:14px">
+        ${[['Open',state.complaints.filter(c=>c.status==='Open').length,'#e84152'],['In Progress',state.complaints.filter(c=>c.status==='In Progress').length,'#f59e0b'],['Resolved',state.complaints.filter(c=>c.status==='Resolved').length,'#00b894']].map(([l,n,c])=>`
+        <div style="background:${c}14;border:1px solid ${c}30;border-radius:12px;padding:14px;text-align:center">
+          <div style="font-family:var(--font-head);font-weight:700;font-size:24px;color:${c}">${n}</div>
+          <div style="font-size:12px;font-weight:600;color:${c}">${l}</div>
+        </div>`).join('')}
+      </div>
+      <div style="font-size:12px;color:var(--text3)">Resolution rate: <strong style="color:#00b894">${Math.round((state.complaints.filter(c=>c.status==='Resolved').length/state.complaints.length)*100)}%</strong> — above industry average (72%)</div>
+    </div>
+  </div>`;
+}
+
+function renderDashFinance(el) {
+  const prods = state.products;
+  const totalRev = STORE_REVENUE.reduce((a,b)=>a+b.rev,0);
+  const totalCost = prods.reduce((a,p)=>a+p.cost,0)*3.2;
+  const totalExpense = EXPENSES.reduce((a,e)=>a+e.amount,0);
+  const grossProfit = totalRev - totalCost;
+  const netProfit = grossProfit - totalExpense;
+  const margin = Math.round((netProfit/totalRev)*100);
+  const aov = Math.round(totalRev/47);
+  const tips = [
+    "📈 Increase stock of mid-range Samsung devices — high conversion observed in last 30 days.",
+    "📦 Realme 12 Pro+ is converting 3x better than category average — consider featuring on homepage.",
+    "⚠️ Low margin alert: Boat Airdopes 141 has <18% margin. Bundle with fast charger to improve AOV.",
+    "🏬 Madhupur branch shows 22% growth MoM — consider increasing inventory allocation.",
+  ];
+  el.innerHTML = `
+  <div class="fu">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px;padding:14px 20px;background:linear-gradient(135deg,rgba(0,71,225,.1),rgba(0,180,216,.05));border-radius:14px;border:1.5px solid rgba(0,71,225,.2)">
+      <span style="font-size:28px">💰</span>
+      <div>
+        <div style="font-family:var(--font-head);font-weight:700;font-size:20px">Financial Intelligence</div>
+        <div style="font-size:12px;color:var(--text3)">🔐 Visible to Owner only · March 2024</div>
+      </div>
+    </div>
+    <div class="grid-kpi" style="margin-bottom:24px">
+      ${kpiCard('💰','Monthly Revenue','₹'+(totalRev/100000).toFixed(1)+'L','#0047e1')}
+      ${kpiCard('🛍','Total Sales','47 units','#7c3aed')}
+      ${kpiCard('📈','Gross Profit','₹'+(grossProfit/100000).toFixed(1)+'L','#00b894')}
+      ${kpiCard('💎','Net Profit','₹'+(netProfit/1000).toFixed(0)+'K','#f59e0b')}
+      ${kpiCard('🧾','Avg Order Value','₹'+aov.toLocaleString('en-IN'),'#ef4444')}
+      ${kpiCard('📊','Profit Margin',margin+'%','#059669')}
+    </div>
+    <div class="grid-2" style="margin-bottom:20px">
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:4px">📊 Revenue Trend — 30 Days</div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:14px">Daily revenue &amp; profit across all stores</div>
+        ${lineChart(REV_TREND.map(v=>({value:v})),'#0047e1',130)}
+        ${lineChart(PROFIT_TREND.map(v=>({value:v})),'#00b894',90)}
+        <div style="display:flex;gap:18px;margin-top:8px">
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:3px;background:#0047e1;border-radius:2px"></div><span style="font-size:11px;color:var(--text3)">Revenue</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:3px;background:#00b894;border-radius:2px"></div><span style="font-size:11px;color:var(--text3)">Profit</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">📅 Daily Snapshot</div>
+        ${[{l:'Sales Today',v:'4 units',c:'#0047e1'},{l:'Revenue Today',v:'₹1.2L',c:'#7c3aed'},{l:'Profit Today',v:'₹31,200',c:'#00b894'}].map(d=>`
+        <div style="margin-bottom:14px;background:${d.c}0f;border-radius:10px;padding:12px 14px;border:1px solid ${d.c}22">
+          <div style="font-size:11px;color:${d.c};font-weight:700">${d.l}</div>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:20px;color:${d.c};margin-top:4px">${d.v}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="grid-2" style="margin-bottom:20px">
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">💹 Profit Breakdown</div>
+        ${[['Total Revenue',totalRev,'#0047e1'],['Product Cost',totalCost,'#e84152'],['Operating Expenses',totalExpense,'#f59e0b'],['Net Profit',netProfit,'#00b894']].map(([l,v,c])=>`
+        <div class="list-row">
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:3px;background:${c}"></div><span style="font-size:13px;font-weight:600">${l}</span></div>
+          <span style="font-family:var(--font-head);font-weight:700;font-size:14px;color:${c}">₹${Math.round(v/1000)}K</span>
+        </div>`).join('')}
+        <div style="margin-top:14px;background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.2);border-radius:10px;padding:10px 14px;text-align:center">
+          <div style="font-size:11px;color:#00966e;font-weight:700">PROFIT MARGIN</div>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:28px;color:#00b894">${margin}%</div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🏬 Store-wise Revenue</div>
+        ${barChart(STORE_REVENUE.map(s=>({name:s.name.split(',')[0],rev:s.rev})),150)}
+        <div style="margin-top:14px;background:var(--accent-bg);border-radius:10px;padding:10px 14px">
+          <div style="font-size:11px;color:var(--accent);font-weight:700">🏆 Best Performing</div>
+          <div style="font-weight:700;font-size:13px;margin-top:2px">VIP Chowk, Deoghar — ₹4.2L</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">💎 Top Revenue Products</div>
+      ${[...prods].filter(p=>p.revenue>0).sort((a,b)=>b.revenue-a.revenue).slice(0,6).map((p,i)=>`
+      <div class="list-row">
+        <div style="display:flex;gap:12px;align-items:center">
+          <span style="font-size:16px">${p.emoji}</span>
+          <div><div style="font-weight:700;font-size:13px">${p.name}</div><div style="font-size:11px;color:var(--text3)">${p.brand} · Margin ${Math.round(((p.price-p.cost)/p.price)*100)}%</div></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--font-head);font-weight:700;font-size:15px;color:#00b894">₹${(p.revenue/1000).toFixed(0)}K</div>
+          <div style="font-size:11px;color:var(--text3)">Revenue</div>
+        </div>
+      </div>`).join('')}
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🧾 Expense Breakdown</div>
+        ${EXPENSES.map(e=>`<div class="list-row"><span style="font-size:13px;color:var(--text2)">${e.label}</span><span style="font-weight:700;font-size:13px;color:#e84152">₹${e.amount.toLocaleString('en-IN')}</span></div>`).join('')}
+        <div style="display:flex;justify-content:space-between;padding:12px 0 0;border-top:2px solid var(--border);margin-top:4px">
+          <span style="font-weight:700;font-size:14px">Total Expenses</span>
+          <span style="font-weight:700;font-size:14px;color:#e84152">₹${totalExpense.toLocaleString('en-IN')}</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">🤖 Smart Business Tips</div>
+        ${tips.map(t=>`<div style="background:var(--bg3);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--text2);line-height:1.6;border:1px solid var(--border);margin-bottom:10px">${t}</div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+// ─── PRODUCT MGMT ─────────────────────────────────────────────────
+function renderProductMgmt(el, isOwner=false) {
+  el.innerHTML = `
+  <div class="fu">
+    <div class="sec-head">
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:26px">📱 Products (<span id="prodCount">${state.products.length}</span>)</h2>
+      <button class="btn btn-primary btn-sm" onclick="toggleAddProd()">+ Add Product</button>
+    </div>
+    <div id="addProdForm" style="display:none;margin-bottom:20px">
+      <div class="card" style="border:2px solid var(--accent)">
+        <h3 style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:16px">Add New Product</h3>
+        <div class="form-row" style="margin-bottom:10px">
+          <input placeholder="Product Name *" id="np_name">
+          <input placeholder="Brand *" id="np_brand">
+        </div>
+        <div class="form-row" style="margin-bottom:10px">
+          <select id="np_cat">
+            <option>Smartphones</option><option>Earbuds & Audio</option><option>Chargers & Cables</option>
+            <option>Smartwatches</option><option>Covers & Cases</option><option>Power Banks</option>
+          </select>
+          <select id="np_stock">
+            <option>In Stock</option><option>Low Stock</option><option>Out of Stock</option><option>Upcoming</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin-bottom:10px">
+          <input placeholder="Price ₹ *" type="number" id="np_price">
+          <input placeholder="MRP ₹" type="number" id="np_mrp">
+        </div>
+        <input placeholder="Discount %" type="number" id="np_disc" style="margin-bottom:10px">
+        <textarea placeholder="Key Specs e.g. 50MP · 256GB · 5G" rows="2" id="np_specs" style="margin-bottom:10px"></textarea>
+        <div class="drop-zone">
+          <div style="font-size:30px;margin-bottom:8px">📸</div>
+          <div style="font-weight:700;font-size:13px">Drag & Drop Product Image</div>
+          <div style="color:var(--text3);font-size:11px;margin-top:4px">PNG, JPG up to 10MB</div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-primary" onclick="saveProduct()">Save Product</button>
+          <button class="btn btn-secondary" onclick="toggleAddProd()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div id="prodList"></div>
+  </div>`;
+  renderProdList();
+}
+
+function toggleAddProd() {
+  const f = document.getElementById('addProdForm');
+  f.style.display = f.style.display==='none'?'block':'none';
+}
+
+function saveProduct() {
+  const name = document.getElementById('np_name').value.trim();
+  const brand = document.getElementById('np_brand').value.trim();
+  const price = +document.getElementById('np_price').value;
+  if(!name||!brand||!price){showToast('Fill required fields','error');return;}
+  state.products.push({
+    id:Date.now(), name, brand, cat:document.getElementById('np_cat').value,
+    price, mrp:+document.getElementById('np_mrp').value||price,
+    discount:+document.getElementById('np_disc').value||0,
+    specs:document.getElementById('np_specs').value,
+    stock:document.getElementById('np_stock').value,
+    emoji:'📱', views:0, cost:Math.round(price*0.82), revenue:0,
+  });
+  toggleAddProd();
+  renderProdList();
+  showToast('Product added!');
+  const cnt = document.getElementById('prodCount');
+  if(cnt) cnt.textContent = state.products.length;
+}
+
+function renderProdList() {
+  const el = document.getElementById('prodList');
+  if(!el) return;
+  const stockColor = s => s==='In Stock'?'green':s==='Low Stock'?'orange':'gray';
+  el.innerHTML = state.products.map(p=>`
+  <div class="prod-list-item" id="pli_${p.id}">
+    <div style="display:flex;gap:14px;align-items:center">
+      <div style="font-size:28px">${p.emoji}</div>
+      <div>
+        <div style="font-weight:700;font-size:14px">${p.name}</div>
+        <div style="font-size:11px;color:var(--text3)">${p.brand} · ${p.cat} · ₹${p.price.toLocaleString('en-IN')}</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="badge badge-${stockColor(p.stock)}">${p.stock}</span>
+      <button class="btn btn-secondary btn-sm" onclick="removeProduct(${p.id})">🗑</button>
+    </div>
+  </div>`).join('');
+}
+
+function removeProduct(id) {
+  state.products = state.products.filter(p=>p.id!==id);
+  renderProdList();
+  showToast('Product removed','error');
+  const cnt = document.getElementById('prodCount');
+  if(cnt) cnt.textContent = state.products.length;
+}
+
+// ─── OFFERS MANAGEMENT ────────────────────────────────────────────
+function renderOffersMgmt(el) {
+  el.innerHTML = `
+  <div class="fu">
+    <div class="sec-head">
+      <div>
+        <h2 style="font-family:var(--font-head);font-weight:700;font-size:26px">🎉 Offer Management</h2>
+        <p style="color:var(--text3);font-size:13px">Control live offers & countdown timers</p>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="showAddOfferModal()">+ Create Offer</button>
+    </div>
+    <div id="offerMgmtList"></div>
+  </div>
+  
+  <!-- ADD OFFER MODAL -->
+  <div class="modal-overlay" id="addOfferModal">
+    <div class="modal">
+      <h3 style="font-family:var(--font-head);font-weight:700;font-size:20px;margin-bottom:6px">Create New Offer</h3>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:20px">Set up an offer with countdown timer for customers</p>
+      <div class="form-group">
+        <div>
+          <label class="form-label">OFFER TITLE *</label>
+          <input placeholder="e.g. Holi Special Sale" id="newOffer_title">
+        </div>
+        <div>
+          <label class="form-label">DESCRIPTION *</label>
+          <input placeholder="e.g. Extra ₹2000 off on iPhones" id="newOffer_desc">
+        </div>
+        <div>
+          <label class="form-label">CUSTOMER SUGGESTION</label>
+          <input placeholder="e.g. Best with HDFC 0% EMI!" id="newOffer_sugg">
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label">EMOJI</label>
+            <input placeholder="🎉" id="newOffer_emoji" maxlength="2">
+          </div>
+          <div>
+            <label class="form-label">COLOR</label>
+            <input type="color" id="newOffer_color" value="#e84152" style="height:42px;padding:4px">
+          </div>
+        </div>
+        <div>
+          <label class="form-label">OFFER END DATE & TIME *</label>
+          <input type="datetime-local" id="newOffer_end">
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-primary" onclick="saveOffer()">Save Offer</button>
+          <button class="btn btn-secondary" onclick="closeAddOfferModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  renderOfferMgmtList();
+  
+  // Set default end date to 7 days from now
+  const defEnd = new Date(Date.now()+7*24*3600*1000);
+  const el2 = document.getElementById('newOffer_end');
+  if(el2) el2.value = defEnd.toISOString().slice(0,16);
+}
+
+function renderOfferMgmtList() {
+  const el = document.getElementById('offerMgmtList');
+  if(!el) return;
+  el.innerHTML = state.offers.map(o=>{
+    const expired = o.endDate <= new Date();
+    const active = o.active && !expired;
+    return `
+    <div class="card" style="margin-bottom:14px;border-left:4px solid ${active?o.color:'var(--border)'}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+            <span style="font-size:24px">${o.emoji}</span>
+            <div>
+              <div style="font-family:var(--font-head);font-weight:700;font-size:16px">${o.title}</div>
+              <div style="font-size:12px;color:var(--text3)">${o.desc}</div>
+            </div>
+            <span class="badge ${active?'badge-green':expired?'badge-red':'badge-gray'}">${active?'Active':expired?'Expired':'Inactive'}</span>
+          </div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">"${o.suggestion}"</div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:8px">⏰ Ends: ${o.endDate.toLocaleString('en-IN')}</div>
+          ${active?`<div class="timer-ctrl">
+            <div class="timer-ctrl-title">⏳ Live Countdown Preview</div>
+            <div class="offer-timer" id="mgmtTimer_${o.id}"></div>
+          </div>`:''}
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0">
+          <button class="btn btn-sm ${o.active&&!expired?'btn-danger':'btn-green'}" onclick="toggleOffer(${o.id})">
+            ${o.active&&!expired?'⏸ Deactivate':'▶ Activate'}
+          </button>
+          <button class="btn btn-sm btn-secondary" onclick="editOfferEnd(${o.id})">📅 Change End Time</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteOffer(${o.id})">🗑 Delete</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  
+  // Start timers for active offers
+  state.offers.filter(o=>o.active&&o.endDate>new Date()).forEach(o=>{
+    startTimer(o.id, o.endDate, `mgmtTimer_${o.id}`);
+  });
+}
+
+function showAddOfferModal() {
+  document.getElementById('addOfferModal').classList.add('open');
+}
+function closeAddOfferModal() {
+  document.getElementById('addOfferModal').classList.remove('open');
+}
+
+function saveOffer() {
+  const title = document.getElementById('newOffer_title').value.trim();
+  const desc = document.getElementById('newOffer_desc').value.trim();
+  const endVal = document.getElementById('newOffer_end').value;
+  if(!title||!desc||!endVal){showToast('Fill required fields','error');return;}
+  state.offers.push({
+    id:Date.now(),
+    title,
+    desc,
+    suggestion:document.getElementById('newOffer_sugg').value||'Great deal awaits!',
+    emoji:document.getElementById('newOffer_emoji').value||'🎉',
+    color:document.getElementById('newOffer_color').value||'#e84152',
+    active:true,
+    endDate:new Date(endVal),
+  });
+  closeAddOfferModal();
+  refreshDashTab('offers-mgmt');
+  // Also refresh home offers
+  const el = document.getElementById('homeOffersGrid');
+  if(el) renderHomeOffers();
+  showToast('Offer created!');
+}
+
+function toggleOffer(id) {
+  const o = state.offers.find(x=>x.id===id);
+  if(!o) return;
+  if(o.endDate <= new Date() && !o.active){showToast('Offer expired. Change end time first.','error');return;}
+  o.active = !o.active;
+  refreshDashTab('offers-mgmt');
+  renderHomeOffers();
+  showToast(o.active?'Offer activated!':'Offer deactivated','info');
+}
+
+function deleteOffer(id) {
+  if(!confirm('Delete this offer?')) return;
+  state.offers = state.offers.filter(o=>o.id!==id);
+  refreshDashTab('offers-mgmt');
+  renderHomeOffers();
+  showToast('Offer deleted','error');
+}
+
+function editOfferEnd(id) {
+  const o = state.offers.find(x=>x.id===id);
+  if(!o) return;
+  const newEnd = prompt('Enter new end date-time (YYYY-MM-DDTHH:MM):', o.endDate.toISOString().slice(0,16));
+  if(!newEnd) return;
+  const d = new Date(newEnd);
+  if(isNaN(d)){showToast('Invalid date','error');return;}
+  o.endDate = d;
+  refreshDashTab('offers-mgmt');
+  renderHomeOffers();
+  showToast('End time updated!');
+}
+
+// ─── INQUIRIES ────────────────────────────────────────────────────
+function renderInquiries(el) {
+  el.innerHTML = `
+  <div class="fu">
+    <h2 style="font-family:var(--font-head);font-weight:700;font-size:26px;margin-bottom:22px">📩 Inquiry Management</h2>
+    <div id="inqList"></div>
+  </div>`;
+  renderInqList();
+}
+
+function renderInqList() {
+  const el = document.getElementById('inqList');
+  if(!el) return;
+  el.innerHTML = state.inquiries.map(inq=>`
+  <div class="inq-item" style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div style="display:flex;gap:14px;align-items:center">
+      <div class="inq-avatar">${inq.type==='Home Delivery'?'🚚':'🏪'}</div>
+      <div>
+        <div style="font-weight:700;font-size:14px">${inq.name}</div>
+        <div style="font-size:12px;color:var(--text3)">📱 ${inq.product} · 📞 ${inq.phone}</div>
+        <div style="font-size:11px;color:var(--text3)">📍 ${inq.loc} · ${inq.date}</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span class="badge ${inq.type==='Home Delivery'?'badge-blue':'badge-gray'}">${inq.type}</span>
+      <span class="badge ${inq.status==='Resolved'?'badge-green':'badge-orange'}">${inq.status}</span>
+      ${inq.status==='Pending'?`<button class="btn btn-green btn-sm" onclick="resolveInquiry(${inq.id})">✅ Resolve</button>`:''}
+    </div>
+  </div>`).join('');
+}
+
+function resolveInquiry(id) {
+  const inq = state.inquiries.find(i=>i.id===id);
+  if(inq) { inq.status='Resolved'; renderInqList(); showToast('Marked resolved'); }
+}
+
+// ─── COMPLAINTS ───────────────────────────────────────────────────
+function renderComplaints(el) {
+  el.innerHTML = `
+  <div class="fu">
+    <h2 style="font-family:var(--font-head);font-weight:700;font-size:26px;margin-bottom:22px">🚨 Complaint Management</h2>
+    <div id="compList"></div>
+  </div>`;
+  renderCompList();
+}
+
+function renderCompList() {
+  const el = document.getElementById('compList');
+  if(!el) return;
+  const typeColor = t=>t==='Warranty'?'badge-orange':t==='Complaint'?'badge-red':'badge-blue';
+  const statColor = s=>s==='Resolved'?'badge-green':s==='Open'?'badge-red':'badge-orange';
+  el.innerHTML = state.complaints.map(c=>`
+  <div class="card" style="margin-bottom:12px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div style="flex:1">
+        <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+          <span class="badge ${typeColor(c.type)}">${c.type}</span>
+          <span class="badge ${statColor(c.status)}">${c.status}</span>
+        </div>
+        <div style="font-weight:700;font-size:14px">${c.name}</div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:8px">📞 ${c.phone} · 📱 ${c.product} · ${c.date}</div>
+        <div style="font-size:13px;color:var(--text2);background:var(--bg3);border-radius:8px;padding:10px 14px">${c.issue}</div>
+      </div>
+      ${c.status!=='Resolved'?`<button class="btn btn-green btn-sm" onclick="resolveComplaint(${c.id})">✅ Resolve</button>`:''}
+    </div>
+  </div>`).join('');
+}
+
+function resolveComplaint(id) {
+  const c = state.complaints.find(x=>x.id===id);
+  if(c) { c.status='Resolved'; renderCompList(); showToast('Complaint resolved'); }
+}
+
+// ─── STORES MGMT ──────────────────────────────────────────────────
+function renderStoresMgmt(el) {
+  const strs = [
+    {name:"VIP Chowk, Deoghar",status:"Active",mgr:"Rajesh Kumar",ph:"+91 94310 XXXXX"},
+    {name:"Jasidih Market, Deoghar",status:"Active",mgr:"Suresh Yadav",ph:"+91 94310 XXXXX"},
+    {name:"Madhupur, Jharkhand",status:"Active",mgr:"Mohan Singh",ph:"+91 94310 XXXXX"},
+  ];
+  el.innerHTML = `
+  <div class="fu">
+    <h2 style="font-family:var(--font-head);font-weight:700;font-size:26px;margin-bottom:22px">🏬 Store Management</h2>
+    <div class="grid-3" style="margin-bottom:20px">
+      ${strs.map(s=>`
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+          <h3 style="font-family:var(--font-head);font-weight:700;font-size:15px">${s.name}</h3>
+          <span class="badge badge-green">${s.status}</span>
+        </div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:4px">👤 ${s.mgr}</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:14px">📞 ${s.ph}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Edit store — production feature','info')">✏️ Edit</button>
+          <button class="btn btn-ghost btn-sm" onclick="showToast('Branch analytics coming soon','info')">📊 Stats</button>
+        </div>
+      </div>`).join('')}
+    </div>
+    <button class="btn btn-primary" onclick="showToast('Add branch — production feature','info')">+ Add New Branch</button>
+  </div>`;
+}
+
+// ─── ROLES ────────────────────────────────────────────────────────
+function renderRoles(el) {
+  el.innerHTML = `
+  <div class="fu">
+    <h2 style="font-family:var(--font-head);font-weight:700;font-size:26px;margin-bottom:22px">👥 Role Management</h2>
+    <div class="grid-2" style="max-width:600px;margin-bottom:20px">
+      <div class="card" style="border-top:3px solid #0047e1">
+        <div style="font-size:12px;color:var(--accent);font-weight:800;margin-bottom:4px">SUPER ADMIN</div>
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:8px">Store Owner</div>
+        <span class="badge badge-blue">Full Access</span>
+      </div>
+      <div class="card" style="border-top:3px solid #7c3aed">
+        <div style="font-size:12px;color:#7c3aed;font-weight:800;margin-bottom:4px">INVENTORY</div>
+        <div style="font-family:var(--font-head);font-weight:700;font-size:16px;margin-bottom:8px">Inventory Manager</div>
+        <span class="badge badge-purple">Limited</span>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="showToast('Add staff — production feature','info')">+ Add Staff Member</button>
+  </div>`;
+}
+
+// ─── INVENTORY DASHBOARD ──────────────────────────────────────────
+function renderInvDash() {
+  renderInvTab('inv-products');
+  checkMobileToggle();
+}
+
+function setInvTab(tab, btn) {
+  document.querySelectorAll('#page-inventoryDash .sidebar-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('#page-inventoryDash .dash-page').forEach(p=>p.classList.remove('active'));
+  const pg = document.getElementById(tab);
+  if(pg) pg.classList.add('active');
+  state.currentInvTab = tab;
+  renderInvTabContent(tab);
+  if(isMobile()) closeInvSidebar();
+}
+
+function renderInvTabContent(tab) {
+  const el = document.getElementById(tab);
+  if(!el||el.dataset.rendered) return;
+  if(tab==='inv-products') renderProductMgmt(el, false);
+  else if(tab==='inv-offers') renderInvOffers(el);
+  el.dataset.rendered = '1';
+}
+
+function renderInvOffers(el) {
+  el.innerHTML = `
+  <div class="fu">
+    <div class="sec-head">
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:26px">🎉 Offer Management</h2>
+    </div>
+    <div class="grid-3" style="margin-bottom:20px">
+      ${[
+        {t:'Holi Special Sale',d:'Extra ₹2000 off on all iPhones',active:true,till:'Mar 31'},
+        {t:'Summer Earbuds Offer',d:'20% off on all earbuds',active:true,till:'Apr 15'},
+        {t:'EMI Fest',d:'0% EMI on orders above ₹10,000',active:false,till:'Expired'},
+      ].map(o=>`
+      <div class="card" style="border-left:4px solid ${o.active?'#00b894':'var(--border)'}">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px">
+          <div style="font-family:var(--font-head);font-weight:700;font-size:15px">${o.t}</div>
+          <span class="badge ${o.active?'badge-green':'badge-gray'}">${o.active?'Active':'Inactive'}</span>
+        </div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:8px">${o.d}</div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:14px">Till: ${o.till}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Edit offer — production feature','info')">✏️ Edit</button>
+          <button class="btn btn-sm ${o.active?'btn-danger':'btn-green'}" onclick="showToast('${o.active?'Offer deactivated':'Offer activated'}')">
+            ${o.active?'Deactivate':'Activate'}
+          </button>
+        </div>
+      </div>`).join('')}
+    </div>
+    <button class="btn btn-primary" onclick="showToast('Create offer — production feature','info')">+ Create Offer</button>
+  </div>`;
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  // Show home page and initialize
+  showPage('home');
+  renderFooterIn('supportFooter');
+
+  // Handle sidebar on resize
+  window.addEventListener('resize', function() {
+    if (!isMobile()) {
+      closeSidebar();
+      closeInvSidebar();
+      document.querySelectorAll('.sidebar').forEach(function(s) { s.classList.remove('open'); });
+      document.querySelectorAll('.sidebar-overlay').forEach(function(s) { s.classList.remove('open'); });
+    }
+    checkMobileToggle();
+  });
+
+  // Mobile: show sidebar toggle buttons
+  checkMobileToggle();
+
+  // Close sidebar when clicking main dash content
+  document.getElementById('ownerMain').addEventListener('click', function(e) {
+    if (isMobile() && !e.target.closest('.sidebar-btn') && !e.target.closest('.sidebar-toggle')) closeSidebar();
+  });
+  document.getElementById('invMain').addEventListener('click', function(e) {
+    if (isMobile() && !e.target.closest('.sidebar-btn') && !e.target.closest('.sidebar-toggle')) closeInvSidebar();
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    var menu = document.getElementById('mobileMenu');
+    var ham = document.getElementById('hamburger');
+    if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
+});
+</script>
+</body>
+</html>
